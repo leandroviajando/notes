@@ -1,0 +1,407 @@
+\section{Vectors}
+
+\begin{paracol}{2}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    $\mathbb{R}^2$ is the set of vectors in the plane.
+
+    $\mathbb{R}^3$ is the set of vectors in space.
+
+    $\mathbb{R}^n = \begin{bmatrix} a_1 \\ \vdots \\ a_n \end{bmatrix}$ with $a_1, \dots, a_n \in \mathbb{R}$ is the set of vectors with $n$ components. \\
+
+    \textbf{Binary vectors} and modular arithmetic: The set of all $m$-ary vectors of length $n$ is denoted by $\mathbb{Z}_m^n$.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+\switchcolumn
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    \textbf{Velocity, speed and acceleration} in $\mathbb{R}^2$: \\
+
+    \begin{itemize}
+        \item Displacement at time $t$: $\mathbf{s}(t) = \begin{pmatrix}
+            x(t) \\ y(t)
+        \end{pmatrix}$
+        \item Velocity at time $t$: $\mathbf{v}(t) = \begin{pmatrix}
+            x'(t) \\ y'(t)
+        \end{pmatrix}$
+        \item Speed at time $t$: $|| \mathbf{v}(t) || = \sqrt{(x'(t))^2 + (y'(t))^2}$
+        \item Acceleration at time $t$: $\mathbf{a}(t) = \mathbf{v}'(t) = \begin{pmatrix}
+            x''(t) \\ y''(t)
+        \end{pmatrix}$
+    \end{itemize}
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+\end{paracol}
+
+\subsection{The Dot Product}
+
+\begin{paracol}{2}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    The \textbf{dot product} of vectors $\mathbf{u}, \mathbf{v}$ is a similarity measure:
+
+    \vspace{-10pt}
+
+    \begin{align}
+        \mathbf{u} \cdot \mathbf{v} & = u_1 v_1 + \dots + u_n v_n \\
+            & = || \mathbf{u} || || \mathbf{v} || \cos(\theta)
+    \end{align}
+
+    $\cos(\theta)$ is largest when the two vectors point in the same direction, because $\cos(0) = 1$.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    Suppose $\mathbf{u}, \mathbf{v} \neq \mathbf{0}$. Then
+
+    \vspace{5pt}
+
+    \begin{enumerate}
+        \item $\mathbf{u} \cdot \mathbf{v} > 0 \iff \theta \in [0, \frac{\pi}{2}]$ \quad (acute angle)
+        \item $\mathbf{u} \cdot \mathbf{v} = 0 \iff \theta = \frac{\pi}{2}$ \hspace{11pt} \quad (\textbf{orthogonal})
+        \item $\mathbf{u} \cdot \mathbf{v} < 0 \iff \theta \in [\frac{\pi}{2}, \pi]$ \quad (obtuse angle)
+        \item The zero vector is orthogonal to all vectors: $\mathbf{0} \cdot \mathbf{u} = 0$
+        \item $\mathbf{u} \cdot \mathbf{u} = || \mathbf{u} || || \mathbf{u} || \cos{0} =  || \mathbf{u} ||^2$
+    \end{enumerate}
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    \textbf{The angle formula}: For non-zero vectors $\mathbf{u}$ and $\mathbf{v}$:
+
+    $$\cos(\theta) = \frac{\mathbf{u} \cdot \mathbf{v}}{|| \mathbf{u} || || \mathbf{v} ||}$$
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\switchcolumn
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    \textbf{Rules of calculation}: Let $\mathbf{u}, \mathbf{v}, \mathbf{w} \in \mathbb{R}^n, c \in \mathbb{R}$. Then \\
+
+    \begin{enumerate}
+        \item \makebox[4.5cm][l]{$\mathbf{u} \cdot \mathbf{v} = \mathbf{v} \cdot \mathbf{u}$} \quad (commutativity)
+        \item \makebox[4.5cm][l]{$\mathbf{u} \cdot (\mathbf{v} + \mathbf{w}) = \mathbf{u} \cdot \mathbf{v} + \mathbf{u} \cdot \mathbf{w}$} \quad (distributivity)
+        \item $(c \mathbf{u}) \cdot \mathbf{v} = \mathbf{u} \cdot (c \mathbf{v}) = c (\mathbf{u} \cdot \mathbf{v})$
+        \item $\mathbf{u} \cdot \mathbf{u} = || \mathbf{u} ||^2 \geq 0$
+    \end{enumerate}
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    The \textbf{norm} of a vector is given by:
+
+    $$|| \mathbf{v} || = \sqrt{\mathbf{v} \cdot \mathbf{v}} \geq 0$$
+
+    If the norm of a vector is equal to one, it is \textbf{normalised}. \\
+
+    If a set of vectors are mutually orthogonal and normalised, they are \textbf{orthonormal}.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    The \textbf{distance} between two vectors:
+
+    \vspace{-5pt}
+
+    $$d(\mathbf{u}, \mathbf{v}) = || \mathbf{u} - \mathbf{v} || = \sqrt{(u_1 - v_1)^2 + \dots + (u_n - v_n)^2}$$
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\end{paracol}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.975\textwidth}
+    Let $P$ be a point on a circle with centre $C$. The line tangent to the circle at $P$ is orthogonal to the vector $\vec{CP}$.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.975\textwidth}
+    $$||\mathbf{v} - \mathbf{w}||^2 = ||\mathbf{v}||^2 + ||\mathbf{w}||^2 \text{ if and only if } \mathbf{v}, \mathbf{w} \text{ are orthogonal.}$$
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {The Pythagorean Theorem};
+\end{tikzpicture}
+
+\textbf{Proof}:
+
+\vspace{-40pt}
+
+\begin{align}
+||\mathbf{v} - \mathbf{w}||^2 & = (\mathbf{v} - \mathbf{w}) \cdot (\mathbf{v} - \mathbf{w}) & \\
+    & = \mathbf{v} \cdot \mathbf{v} + \mathbf{v} \cdot (- \mathbf{w}) + (- \mathbf{w}) \cdot \mathbf{v} + (- \mathbf{w}) \cdot (- \mathbf{w}) & \text{by rule 2} \\
+    & = \mathbf{v} \cdot \mathbf{v} - 2 \mathbf{v} \cdot \mathbf{w} + \mathbf{w} \cdot \mathbf{w} & \text{by rules 1 and 2} \\
+    & = ||\mathbf{v}||^2 - 2 \mathbf{v} \cdot \mathbf{w} + ||\mathbf{w}||^2 & \\
+    & = ||\mathbf{v}||^2 + ||\mathbf{w}||^2 & \text{ if and only if }\mathbf{v} \cdot \mathbf{w} = 0
+\end{align}
+
+\begin{paracol}{2}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    $$| \mathbf{u} \cdot \mathbf{v} | \leq || \mathbf{u} || || \mathbf{v} ||$$
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Cauchy-Schwarz Inequality};
+\end{tikzpicture}
+
+\textbf{Proof}: TODO
+
+\switchcolumn
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    $$| \mathbf{u} + \mathbf{v} | \leq || \mathbf{u} || + || \mathbf{v} ||$$
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Triangle Inequality};
+\end{tikzpicture}
+
+\textbf{Proof}: TODO
+
+\end{paracol}
+
+\newpage
+
+\subsection{The Cross Product}
+
+\begin{paracol}{2}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    For vectors $\mathbf{u}, \mathbf{v} \in \mathbb{R}^3$, the \textbf{cross product} of $\mathbf{u}$ and $\mathbf{v}$ is:
+
+    $$\mathbf{v} \times \mathbf{v} = \begin{bmatrix}
+        u_1 \\ u_2 \\ u_3
+    \end{bmatrix} \times \begin{bmatrix}
+        v_1 \\ v_2 \\ v_3
+    \end{bmatrix} = \begin{bmatrix}
+        u_2 v_3 - u_3 v_2 \\
+        u_3 v_1 - u_1 v_3 \\
+        u_1 v_2 - u_2 v_1
+    \end{bmatrix}$$
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    \textbf{Rules of calculation}: \\
+
+    \begin{enumerate}
+        \item \textbf{The right-hand rule}: $\mathbf{v} \times \mathbf{u} = - (\mathbf{u} \times \mathbf{v})$
+        \item It follows that $\mathbf{u} \times \mathbf{u} = \mathbf{0}$; and $\mathbf{u} \times \mathbf{0} = \mathbf{0}$. \\
+
+        \item $\mathbf{u} \times k \mathbf{v} = k (\mathbf{u} \times \mathbf{v})$
+        \item $\mathbf{u} \times k \mathbf{u} = \mathbf{0}$ \\
+
+        \item $\mathbf{u} \times (\mathbf{v} + \mathbf{w}) = \mathbf{u} \times \mathbf{v} + \mathbf{u} \times \mathbf{w}$
+        \item $\mathbf{u} \cdot (\mathbf{v} \times \mathbf{w}) = (\mathbf{u} \times \mathbf{v}) \cdot \mathbf{w}$
+        \item $\mathbf{u} \times (\mathbf{v} \times \mathbf{w}) = (\mathbf{u} \cdot \mathbf{w}) \mathbf{v} - (\mathbf{u} \cdot \mathbf{w}) \mathbf{w}$ \\
+
+        \item $|| \mathbf{u} \times \mathbf{v} ||^2 = || \mathbf{u} ||^2 || \mathbf{v} ||^2 - (\mathbf{u} \cdot \mathbf{v})^2$
+    \end{enumerate}
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+\switchcolumn
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    The cross product of two vectors $\mathbf{u}$ and $\mathbf{v}$ in $\mathbb{R}^3$ is orthogonal to both $\mathbf{u}$ and $\mathbf{v}$: $(\mathbf{u} \times \mathbf{v}) \perp \mathbf{u}, \qquad (\mathbf{u} \times \mathbf{v}) \perp \mathbf{v}$
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    Two non-zero vectors $\mathbf{u}$ and $\mathbf{v}$ are \textbf{parallel} iff $\mathbf{u} \times \mathbf{v} = \mathbf{0}$.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    Let $\mathbf{a}$ and $\mathbf{b}$ be vectors in $\mathbb{R}^3$. Then the parallelogram spanned by these vectors has area equal to the determinant of their cross product:
+
+    $$\text{Area} = || \mathbf{a} \times \mathbf{b} || = || \mathbf{a} || || \mathbf{b} || \sin(\theta)$$
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    The volume of a parallelepiped spanned by vectors $\mathbf{a}, \mathbf{b}$ and $\mathbf{c}$ in $\mathbb{R}^3$ is given by (the absolute value of) the vectors' \textbf{triple product}:
+
+    $$\text{Volume} = | (\mathbf{a} \times \mathbf{b}) \cdot \mathbf{c} | = || \mathbf{a} \times \mathbf{b} || || \mathbf{c} || | \cos(\theta) |$$
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\end{paracol}
+
+\vspace{-10pt}
+
+\subsection{Lines and Planes}
+
+\begin{paracol}{2}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    In $\mathbb{R}^2$, $n_1 x + n_2 y = c$ describes a line orthogonal to $\begin{bmatrix}
+        n_1 \\ n_2
+    \end{bmatrix}$. \\
+
+    If $n_2 \neq 0$, there exists a unique representation of the line:
+
+    $$y = a x + b \text{ where } a = - \frac{n_1}{n_2} \text{ and } b = \frac{c}{n_2}$$
+
+    In $\mathbb{R}^3$, $n_1 x + n_2 y + n_3 z = c$ describes a plane orthogonal to $\begin{bmatrix}
+        n_1 & n_2 & n_3
+    \end{bmatrix}^T$. \\
+
+    In $\mathbb{R}^k$, $n_1 x + n_2 x_2 + \dots + n_k x_k = c$ describes a hyperplane orthogonal to $\begin{bmatrix}
+        n_1 & n_2 & \dots & n_k
+    \end{bmatrix}^T$. \\
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\switchcolumn
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    The distance to the centre of a circle is equal to its norm:
+
+    $$
+    r = || \begin{pmatrix}
+        x \\ y
+    \end{pmatrix} - \begin{pmatrix}
+        a \\ b
+    \end{pmatrix} || = \sqrt{(x-a)^2 + (y-b)^2}
+    $$
+
+    This gives the equation of a \textbf{circle}:
+
+    \vspace{-10pt}
+
+    $$(x-a)^2 + (y-b)^2 = r^2$$
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    Similarly in $\mathbb{R}^3$, the distance to the centre of a sphere is:
+
+    \vspace{-7.5pt}
+
+    $$
+    r = || \begin{pmatrix}
+        x \\ y \\ z
+    \end{pmatrix} - \begin{pmatrix}
+        a \\ b \\ c
+    \end{pmatrix} || = \sqrt{(x-a)^2 + (y-b)^2 + (z-c)^2}
+    $$
+
+    This gives the equation of a \textbf{sphere}:
+
+    \vspace{-7.5pt}
+
+    $$(x-a)^2 + (y-b)^2 + (z-c)^2 = r^2$$
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\switchcolumn
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    \begin{center}
+        object dimension + number of general form equations
+        
+        = dimension of the space
+    \end{center}
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {The Balancing Formula};
+\end{tikzpicture}
+
+\end{paracol}
+
+\vspace{-10pt}
+
+\begin{center}
+\begin{tabular}{c|c|c|c|c}
+    & Normal Form & General Form & Vector Form & Parametric Form \\
+    \hline
+    Lines in $\mathbb{R}^2$ & $\mathbf{n} \cdot ( \mathbf{x} - \mathbf{x} ) = \mathbf{0} \iff \mathbf{n} \cdot \mathbf{x} = \mathbf{n} \cdot \mathbf{p}$ & $n_1 x + n_2 y = c$  & $\mathbf{x} = \mathbf{p} + t \mathbf{v}$ & $\begin{cases}
+        x = p_1 + t v1 \\
+        y = p_2 + t v2
+    \end{cases}$ \\
+    \hline
+    Lines in $\mathbb{R}^3$ & $\begin{cases}
+        \mathbf{n}_1 \cdot \mathbf{x} = \mathbf{n}_1 \cdot \mathbf{p}_1 \\
+        \mathbf{n}_2 \cdot \mathbf{x} = \mathbf{n}_2 \cdot \mathbf{p}_2
+    \end{cases}$ & $\begin{cases}
+        n_1{_1} x + n_1{_2} y + n_1{_3} z = c_1 \\
+        n_2{_1} x + n_2{_2} y + n_2{_3} z = c_2
+    \end{cases}$ & $\mathbf{x} = \mathbf{p} + t \mathbf{v}$ & $\begin{cases}
+        x = p_1 + t v1 \\
+        y = p_2 + t v2 \\
+        z = p_3 + t v3
+    \end{cases}$ \\
+    \hline
+    Planes in $\mathbb{R}^3$ & $\mathbf{n} \cdot ( \mathbf{x} - \mathbf{p} ) = \mathbf{0} \iff \mathbf{n} \cdot \mathbf{x} = \mathbf{n} \cdot \mathbf{p}$ & $n_1 x + n_2 y + n_3 z = c$  & $\mathbf{x} = \mathbf{p} + s \mathbf{u} + t \mathbf{v}$ & $\begin{cases}
+        x = p_1 + s u_1 + t v_1 \\
+        y = p_2 + s u_2 + t v_2 \\
+        z = p_3 + s u_3 + t v_3
+    \end{cases}$
+\end{tabular}
+\end{center}
+
+$\mathbf{n} \neq \mathbf{0}$ is a normal vector. $\mathbf{p}$ is a given point on the line / in the plane. $\mathbf{u}, \mathbf{v} \neq \mathbf{0}$ are direction vectors of the line / plane.
+
+\begin{paracol}{2}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    The distance from a point $B$ to a line $l$ with a given point $A$ (/ equation $ax + by + \dots = d$) is given by
+
+    \vspace{-15pt}
+
+    $$d(B, l) = || \vec{AB} - \text{Proj}_\mathbf{d}(\vec{AB}) || = \frac{| a x_0 + b y_0 + \dots - d |}{\sqrt{a^2 + b^2 + \dots}}$$
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\switchcolumn
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    The distance from a point $B$ to a plane $\mathcal{P}$ with a given point $A$ and normal vector $\mathbf{n}$ is given by
+
+    \vspace{-15pt}
+
+    $$d(B, \mathcal{P}) = || \text{Proj}_\mathbf{n}(\vec{AB}) || = \frac{| a x_0 + b y_0 + c z_0 - d |}{\sqrt{a^2 + b^2 + c^2}}$$
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\end{paracol}

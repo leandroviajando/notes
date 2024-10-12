@@ -1,0 +1,465 @@
+\section{Symmetric Matrices}
+
+\begin{paracol}{2}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    A square matrix $A$ is called \textbf{symmetric} if $A^T = A$.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+\switchcolumn
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    A square matrix $A$ is \textbf{skew-symmetric} if $A^T = -A$.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+\end{paracol}
+
+\textbf{Examples} of symmetric matrices:
+
+\begin{itemize}
+    \item A standard matrix $P$ for an \textbf{orthogonal projection}
+    \item A \textbf{reflection} about a line through the origin that makes angle $\theta$ with the $x_1$-axis:
+
+    $$A = \begin{bmatrix}
+        \cos(2\theta) & \sin(2\theta) \\
+        \sin(2\theta) & -\cos(2\theta)
+    \end{bmatrix}$$
+\end{itemize}
+
+\begin{paracol}{2}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    If $A$ is a symmetric matrix, then \textit{any two eigenvectors corresponding to distinct eigenvalues} of $A$ are \textbf{orthogonal}.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\textbf{Proof}:
+
+\begin{align*}
+    \lambda_1 \mathbf{v}_1 \cdot \mathbf{v}_2 & = (A \mathbf{v}_1) \cdot \mathbf{v}_2 = (A \mathbf{v}_1)^T \mathbf{v}_2 = (\mathbf{v}_1^T A^T) \mathbf{v}_2 \\
+    & = \mathbf{v}_1^T (A \mathbf{v}_2) = \mathbf{v}_1^T (\lambda_2 \mathbf{v}_2) = \lambda_2 \mathbf{v}_1 \cdot \mathbf{v}_2
+\end{align*}
+
+Hence $(\lambda_2 - \lambda_1)(\mathbf{v}_1 \cdot \mathbf{v}_2) = 0$. Since $\lambda_1 \neq \lambda_2$, we find $\mathbf{v}_1 \cdot \mathbf{v}_2 = 0$.
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    If $A$ is a square matrix, then $A + A^T$ is a symmetric matrix.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\switchcolumn
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    If a matrix $A$ is symmetric, it has \textbf{only real eigenvalues}.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\textbf{Proof}: Suppose $A \mathbf{x} = \lambda \mathbf{x}$ for some $0 \neq \mathbf{x} \in \mathcal{C}^n$. Then
+
+\begin{align*}
+    \lambda \mathbf{x} \cdot \bar{\mathbf{x}} & = A \mathbf{x} \cdot \bar{\mathbf{x}} = (A \mathbf{x})^T \bar{\mathbf{x}} = \mathbf{x}^T A^T \bar{\mathbf{x}} = \mathbf{x}^T A \bar{\mathbf{x}} \\
+    & = \mathbf{x}^T \bar{A \mathbf{x}} = \mathbf{x}^T \bar{\lambda \mathbf{x}} = \bar{\lambda} \mathbf{x}^T \bar{\mathbf{x}} \\
+    & = \bar{\lambda} \mathbf{x} \cdot \bar{\mathbf{x}}
+\end{align*}
+
+Since $\mathbf{x} \neq \mathbf{0}$,
+
+$$\mathbf{x} \cdot \bar{\mathbf{x}} = x_1 \bar{x_1} + \dots + x_n \bar{x_n} = |x_1|^2 + \dots + |x_n|^2 > 0$$
+
+So $\lambda = \bar{\lambda}$ and, hence, $\lambda$ is real. \\
+
+\end{paracol}
+
+Only square matrices can be symmetric. However, from a non-square matrix we can easily build a symmetric square matrix, as can be seen from the following  theorem (which plays an important role in the Singular Value Decomposition):
+
+\begin{paracol}{2}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    For any matrix $A$ (potentially non-square), the matrices $AA^T$ and $A^T A$ are symmetric.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\switchcolumn
+
+\textbf{Proof}: Let $A$ be an $n \times m$-matrix. Then $A^TA$ is $m \times n$, $AA^T$ is $n \times n$, and both are symmetric:
+
+\vspace{-15pt}
+
+$$(A^T A)^T = A^T (A^T)^T = A^T A \qquad (AA^T)^T = (A^T)^T A^T = AA^T$$
+
+\end{paracol}
+
+\subsection{Orthogonal Diagonalisation}
+
+\begin{paracol}{2}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    An $n \times n$-matrix $A$ is \textbf{orthogonally diagonalisable} if there exists an \textit{orthogonal} matrix $Q$, i.e. $Q^{-1} = Q^T$, and a \textit{diagonal} matrix $D$ such that
+
+    $$A = Q D Q^{-1} ( = Q D Q^T )$$
+
+    In other words, $A$ must be diagonalisable with an orthogonal transformation matrix. \\
+    
+    Any matrix that is symmetric and diagonalisable, is orthogonally diagonalisable.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+In fact, every symmetric matrix is diagonalisable.
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    If $A$ is a symmetric matrix, then $A$ is diagonalisable.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    Let $A$ be a $n \times $ real matrix. Then $A$ is \textbf{symmetric if and only if it is orthogonally diagonalisable}.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Spectral Theorem};
+\end{tikzpicture}
+
+\switchcolumn
+
+\textbf{Algorithm} for orthogonal diagonalisation:
+
+\begin{enumerate}
+    \item Compute the eigenvalues of $A$.
+    \item For each eigenvalue, construct an \textit{orthonormal} basis for the corresponding eigenspace:
+        \begin{itemize}
+            \item Use the Gram-Schmidt process (if necessary).
+            \item Normalise the basis vectors.
+        \end{itemize}
+    \item Construct the matrix $P$ using the basis vectors constructed in step 2 as columns.
+    \item Construct the matrix $D$ using the corresponding eigenvalues on the diagonal.
+\end{enumerate}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    \vspace{3pt}
+
+    If $A = Q D Q^T = \begin{bmatrix}
+        \mathbf{q}_1 \dots \mathbf{q}_n
+    \end{bmatrix} \begin{bmatrix}
+        \lambda_1 & & 0 \\
+        & \ddots & \iff & \\
+        0 & & \lambda_n
+    \end{bmatrix} \begin{bmatrix}
+        \mathbf{q}_1^T \\ \vdots \\ \mathbf{q}_n^T
+    \end{bmatrix}$, then \\
+
+    $A = \lambda_1 \mathbf{q}_1 \mathbf{q}_1^T + \lambda_2 \mathbf{q}_2 \mathbf{q}_2^T + \dots + \lambda_n \mathbf{q}_n \mathbf{q}_n^T = \sum_{i=1}^n \lambda_i \mathbf{q}_i \mathbf{q}_i^T$
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Spectral Decomposition};
+\end{tikzpicture}
+
+\end{paracol}
+
+\newpage
+
+\subsection{Quadratic Forms}
+
+\begin{paracol}{2}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    A quadratic form on $\mathbb{R}^n$ is a function of the form
+
+    $$Q(x) = \sum_{i=1}^n \sum_{j=1}^n a_{ij} x_i x_j$$
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+\textbf{Examples}:
+
+\begin{itemize}
+    \item Ellipses: $2 x_1^2 + x_2^2 = 1$
+    \item Hyperbolas: $x_1^2 - x_2^2 = 1$
+    \item Lines: $4x_1^2 - 3x_2^2 = 0$
+\end{itemize}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    If $A$ is an $n \times n$-matrix, then $Q(\mathbf{x}) = \mathbf{x}^T A \mathbf{x}$ is a quadratic form on $\mathbb{R}^n$.
+
+    $$Q\Bigg(\begin{bmatrix}
+        x_1 \\ \vdots \\ x_n
+    \end{bmatrix}\Bigg) = \begin{bmatrix}
+        x_1 \\ \vdots \\ x_n
+    \end{bmatrix} \begin{bmatrix}
+        a_{11} & \dots & a_{1n} \\
+        \vdots & \ddots & \vdots \\
+        a_{n1} & \dots & a_{nn}
+    \end{bmatrix} \begin{bmatrix}
+        x_1 & \dots & x_n
+    \end{bmatrix}$$
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+\textbf{Example}: If $A$ is the identity matrix, then
+
+$$Q(\mathbf{x}) = \mathbf{x}^T I_n \mathbf{x} = x_1^2 + \dots + x_n^2 = || \mathbf{x} ||^2$$
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    For every quadratic form $Q(\mathbf{x})$ on $\mathbb{R}^n$ there exists a unique \textit{symmetric} $n \times n$-matrix $A$ such that
+
+    $$A(\mathbf{x}) = \mathbf{x}^T A \mathbf{x}$$
+
+    for every vector $\mathbf{x}$ in $\mathbb{R}^n$.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    Consider a quadratic form $Q(\mathbf{x}) = \mathbf{x}^T A \mathbf{x}$ for a symmetric $n \times n$-matrix $A$. \\
+
+    There exists an orthogonal matrix $P$ such that the change of variable $\mathbf{x} = P \mathbf{y}$ transforms $Q$ into a quadratic form $\sim{Q}(\mathbf{y}) = \mathbf{y}^T D \mathbf{y}$ with no cross terms.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Principal-Axis Theorem};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    The \textbf{principal axes} of the quadratic form $Q$ are the lines that are generated by the columns of $P$.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+\textbf{Algorithm} to remove cross terms: Let $Q(\mathbf{x}) = \mathbf{x}^T A \mathbf{x}$ be the quadratic form with symmetric matrix $A$.
+
+\begin{enumerate}
+    \item Orthogonal diagonalisation $A = PDP^T$ with orthonormal basis $\mathcal{B} = \{ \mathbf{v}_1, \dots, \mathbf{v}_n \}$ for the columns of $P$.
+    \item Define the new variable $\mathbf{y} = [\mathbf{x}]_\mathcal{B} = P^T \mathbf{x}$. Note that $\mathbf{x} = P \mathbf{y}$, since $P^T = P^{-1}$.
+    \item Then \begin{align*}
+        Q(\mathbf{x}) & = \mathbf{x}^T A \mathbf{x} = \mathbf{x}^T PDP^T \mathbf{x} = (P^T \mathbf{x})^T D (P^T \mathbf{x}) = \mathbf{y}^T D \mathbf{y} \\
+        & = \lambda_1 y_1^2 + \dots + \lambda_n y_n^2
+    \end{align*}
+\end{enumerate}
+
+\switchcolumn
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    The quadratic form $Q(x) = \mathbf{x}^T A \mathbf{x}$ is \\
+
+    \begin{center}
+    \begin{tabular}{l c l}
+        positive semi-definite & $\iff$ & $Q(\mathbf{x}) \geq 0$ for all $\mathbf{x}$ \\
+        positive definite & $\iff$ & $Q(\mathbf{x}) > 0$ for all $\mathbf{x} \neq \mathbf{0}$ \\
+        indefinite & $\iff$ & $Q(\mathbf{x})$ assumes both \\ & & positive and negative \\ & & values \\
+        negative semi-definite & $\iff$ & $Q(\mathbf{x}) \leq 0$ for all $\mathbf{x}$ \\
+        negative definite & $\iff$ & $Q(\mathbf{x}) < 0$ for all $\mathbf{x} \neq \mathbf{0}$
+    \end{tabular}
+    \end{center}
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+\textbf{Application}: The second-derivative test:
+
+\begin{itemize}
+    \item Local maximum $\iff$ negative definite Hessian matrix
+    \item Local minimum $\iff$ positive definite Hessian matrix
+    \item Saddle point $\iff$ indefinite Hessian matrix
+\end{itemize}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    Let $A$ be an $n \times n$ symmetric matrix. Then the quadratic form $\mathbf{x}^T A \mathbf{x}$ is defined by the eigenvalues of matrix $A$: \\
+
+    \begin{center}
+    \begin{tabular}{l c l}
+        quadratic form $\mathbf{x}^T A \mathbf{x}$: & & eigenvalues of $A$: \\
+        \hline
+        positive semi-definite & $\iff$ & all $\geq 0$ \\
+        positive definite & $\iff$ & all $> 0$ \\
+        indefinite & $\iff$ & both $> 0$ and $< 0$ \\
+        negative semi-definite & $\iff$ & all $\leq 0$ \\
+        negative definite & $\iff$ & all $< 0$
+    \end{tabular}
+    \end{center}
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Classification Theorem};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    Let $A$ be an $n \times n$ symmetric matrix with eigenvalues $\lambda_1 \geq \lambda_2 \geq \dots \geq \lambda_n$. \\
+
+    The \textbf{maximal value} of $\mathbf{x}^T A \mathbf{x}$ under the constraint $|| \mathbf{x} || = 1$ is $\lambda_1$. This value is attained if $\mathbf{x}$ is any unit-eigenvector of $A$ corresponding to $\lambda_1$. \\
+
+    The \textbf{minimal value} of $\mathbf{x}^T A \mathbf{x}$ under the constraint $|| \mathbf{x} || = 1$ is $\lambda_n$. This value is attained if $\mathbf{x}$ is any unit-eigenvector of $A$ corresponding to $\lambda_n$.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    Let $A$ be an $n \times n$ symmetric matrix with eigenvalues $\lambda_1 \geq \dots \geq \lambda_n$ and let $\{ \mathbf{v}_1, \dots, \mathbf{v}_n \}$ be an orthonormal set of corresponding eigenvectors. Then the maximal value of $\mathbf{x}^T A \mathbf{x}$ subject to the constraints
+
+    $$\begin{matrix}
+        || \mathbf{x} || = 1 \\
+        \mathbf{x} \cdot \mathbf{v} = 0 \\
+        \vdots \\
+        \mathbf{x} \cdot \mathbf{v}_{k-1} = 0
+    \end{matrix}$$
+
+    is equal to the eigenvalue $\lambda_k$ of $A$. This maximal value is at least attained at $x = \pm \mathbf{v}_k$.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\end{paracol}
+
+\newpage
+
+\subsection{Singular Value Decomposition}
+
+\begin{paracol}{2}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    The eigenvalues of the symmetric matrix $A^T A$ are \textbf{non-negative} for any $m \times n$ matrix $A$.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\textbf{Proof}: Let $\lambda$ be the eigenvalue of $A^T A$ corresponding to a vector $\mathbf{v} s.t. \mathbf{v}^T \mathbf{v} = 1$. Then
+
+$$\lambda = \mathbf{v}^T \lambda \mathbf{v} = \mathbf{v}^T A^T A \mathbf{v} = (A \mathbf{v}) \cdot (A \mathbf{v}) = || A \mathbf{v} ||^2 \geq 0$$
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    The \textbf{singular values} of an $m \times n$ matrix $A$ are the square roots of the eigenvalues of $A^T A$, usually denoted by
+
+    $$\sigma_1 \geq \sigma_2 \geq \dots \geq \sigma_n$$
+
+    including multiplicities and arranged in decreasing order.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    Let $A$ be an $m \times n$ matrix of rank $r$. A set of \textbf{right-singular} vectors is an orthonormal set of eigenvectors $\{ \mathbf{v}_1, \mathbf{v}_2, \dots, \mathbf{v}_n \}$ of $A^T A$ such that the corresponding eigenvalues are in descending order.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+\vspace{-10pt}
+
+$$(A \mathbf{v}_i) \cdot (A \mathbf{v}_j) = \mathbf{v}_i^T A^T A \mathbf{v}_j = \sigma_j^2 \mathbf{v}_i^T \mathbf{v}_j = \begin{cases}
+    \sigma_j^2 & \text{if } i = j \\
+    0 & \text{if } i \neq j
+\end{cases}$$
+
+$$|| A \mathbf{v}_i || = \sqrt{(A \mathbf{v}_i) \cdot (A \mathbf{v}_i)} = \sigma_i$$
+
+Since the lengths of these vectors are given exactly by the singular values and they follow the same ordering as the singular values, the first $r$ vectors are non-zero and the rest are zero by virtue of the rank of the matrix $A$:
+
+$$\{ A \mathbf{v}_1, \dots, A \mathbf{v}_n \} = \{ A \mathbf{v}_1, \dots, \mathbf{v}_r, \mathbf{0}, \dots, \mathbf{0} \}$$
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    If $\{ \mathbf{v}_1, \mathbf{v}_2, \dots, \mathbf{v}_n \}$ is a set of right-singular vectors for the matrix $A$ then the set $\{ A \mathbf{v}_1, A \mathbf{v}_2, \dots, A \mathbf{v}_n \}$ is orthogonal. Moreover, the set $\{ A \mathbf{v}_1, A \mathbf{v}_2, \dots, A \mathbf{v}_r \}$ is an orthogonal basis for $\text{Col}(A)$.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    Let $A$ be an $m \times n$ matrix of rank $r$. A set of \textbf{left-singular} vectors is an orthonormal set of vectors $\{ \mathbf{u}_1, \mathbf{u}_2, \dots, \mathbf{u}_m \}$ where $\{ \mathbf{u}_1, \mathbf{u}_2, \dots, \mathbf{u}_m \}$ is obtained by normalising the set $\{ A \mathbf{v}_1, A \mathbf{v}_2, \dots, A \mathbf{v}_r \}$ for some set of right-singular vectors $\{ \mathbf{v}_1, \mathbf{v}_2, \dots, \mathbf{v}_n \}$.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    Let $A$ be an $m \times n$ matrix of rank $r$. The \textbf{matrix of singular values} $\Sigma$ is the $m \times n$ matrix obtained by adding rows and columns of zeros where necessary to the $r \times r$ matrix
+
+    \vspace{-10pt}
+
+    $$D = \begin{bmatrix}
+        \sigma_1 & 0 & \dots & 0 \\
+        0 & \sigma_2 & & 0 \\
+        \vdots & & \ddots & \vdots \\
+        0 & 0 & \dots & \sigma_r
+    \end{bmatrix}$$
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+\switchcolumn
+
+Denote the matrix whose columns are a set of right-singular vectors by $V$.
+
+Denote the matrix whose columns are a set of left-singular vectors by $U$.
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    Any $m \times n$ matrix $A$ may be decomposed as a product
+
+    $$A = U \Sigma V^T$$
+
+    where $U$ is an orthogonal $m \times m$ matrix, $V$ is an orthogonal $n \times n$ matrix, and $\Sigma$ is the matrix of singular values.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Singular Value Decomposition};
+\end{tikzpicture}
+
+\textbf{Proof}: For $i = 1, \dots, n$, $A \mathbf{v}_i = \sigma_i \mathbf{u}_i$, and so
+
+\begin{align*}
+    AV = \begin{pmatrix}
+    A \mathbf{v}_1 & A \mathbf{v}_2 & \dots & A \mathbf{v}_n
+\end{pmatrix} & = \begin{pmatrix}
+    \sigma_1 \mathbf{u}_1 & \sigma_2 \mathbf{u}_2 & \dots & \sigma_n \mathbf{u}_n
+\end{pmatrix} \\
+    & = \begin{pmatrix}
+        \sigma_1 \mathbf{u}_1 & \sigma_2 \mathbf{u}_2 & \dots & \sigma_r \mathbf{u}_r & \mathbf{0} & \dots & \mathbf{0}
+    \end{pmatrix}
+\end{align*}
+
+$$U \Sigma = \begin{pmatrix}
+    \sigma_1 \mathbf{u}_1 & \sigma_2 \mathbf{u}_2 & \dots & \sigma_r \mathbf{u}_r & \mathbf{0} & \dots & \mathbf{0}
+\end{pmatrix} \Rightarrow A = U \Sigma V^T$$
+
+\textbf{Applications}:
+
+\begin{enumerate}
+    \item reliable numerical computations
+    \item pseudo-inverses / least-squares solutions / linear regression
+    \item bases of fundamental spaces
+    \item principal component analysis (PCA)
+\end{enumerate}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    \textbf{Description}: Text
+    $$\mathbf{v} \cdot \mathbf{w} = 0 \iff \alpha = \frac{\pi}{2} \iff \mathbf{v} \perp \mathbf{w}$$
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+Principal component analysis uses the singular value decomposition to determine the dimensionality of the data, and provides the data in a new frame of reference that removes redundancy and orders the data according to variance.
+
+\end{paracol}

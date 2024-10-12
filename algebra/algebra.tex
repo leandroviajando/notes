@@ -1,0 +1,80 @@
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[margin=0.75cm]{geometry}
+\usepackage[utf8]{inputenc}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[backend=biber]{biblatex}
+\usepackage{textcomp}
+\usepackage{gensymb}
+\usepackage{paracol}
+\usepackage{parskip}
+\usepackage{tikz}
+\usepackage{titlesec}
+\usepackage{verbatim}
+\usepackage{xcolor}
+
+\titleformat{\section}[block]{\Large\bfseries\filcenter\color{red}}{\thesection}{1em}{}[\hrule]
+\titleformat{\subsection}[block]{\bfseries\filcenter\color{red}}{\thesubsection}{1em}{}[\hrule]
+
+\setlength{\columnsep}{25pt}
+
+\begin{comment}
+    Algebra (Linear and Groups) = red
+    Calculus = cyan
+    Complex Variables = violet
+    Differential Equations = blue
+    Discrete Mathematics (incl. Algorithms, Data Structures and Graphs) = teal
+    Probability & Statistics = orange
+    Physics = purple
+    Chemistry = olive
+    Biology = magenta
+
+    Artificial Intelligence = pink
+    Cognitive Science = purple
+    Machine Learning = cyan
+    Probabilistic Modelling and Reasoning = orange
+    Neural Networks = blue
+    Information Retrieval and Search Engines = olive
+    Bioinformatics = magenta
+    Reinforcement Learning = teal
+    SVMs = red
+    Knowledge Representation = violet
+\end{comment}
+
+\tikzset{
+    rounded-box/.style = {draw=red, fill=white, thin, rectangle, rounded corners, inner sep=5pt, inner ysep=10pt},
+    rounded-box-title/.style = {fill=red, text=white, font=\bfseries},
+}
+
+\addbibresource{references.bib}
+
+\begin{document}
+\title{Cheat Sheet}
+
+\input{section-1-vectors}
+\input{section-2-systems-of-linear-equations}
+\input{section-3-linear-independence} \newpage
+\input{section-4-linear-subspaces}
+\input{section-5-orthogonality} \newpage
+\input{section-6-least-squares}
+\input{section-7-matrix-algebra} \newpage
+\input{section-8-linear-transformations} \newpage
+\input{section-9-determinants} \newpage
+\input{section-10-eigenvalues-and-eigenvectors}
+\input{section-11-similarity-and-diagonalisation} \newpage
+\input{section-12-symmetric matrices} \newpage
+\input{section-13-vector-spaces} \newpage
+\input{section-14-permutations} \newpage
+\input{section-15-groups} \newpage
+\input{section-16-the-symmetric-group} \newpage
+\input{section-17-subgroups} \newpage
+\input{section-18-cosets-and-lagranges-theorem} \newpage
+\input{section-19-the-dihedral-groups} \newpage
+\input{section-20-homomorphisms-and-isomorphisms} \newpage
+
+\nocite{*}
+\printbibliography
+
+\end{document}

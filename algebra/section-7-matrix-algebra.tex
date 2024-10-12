@@ -1,0 +1,584 @@
+\section{Matrix Algebra}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.975\textwidth}
+    Let $A$ be an $m \times n$ matrix, $\mathbf{e}_i$ a $1 \times m$ standard unit vector, and $\mathbf{e}_j$ an $n \times 1$ standard unit vector. Then \\
+
+    \begin{itemize}
+        \item $\mathbf{e}_i A$ is the $i^\text{th}$ row of $A$,
+        \item $A \mathbf{e}_j$ is the $j^\text{th}$ column of $A$. \\
+    \end{itemize}
+
+    Thus, multiplication by a standard unit vector can be used to "pick out" a particular column or row.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.975\textwidth}
+    Let $A, B, C$ be matrices whose sizes are such that the indicated operations can be performed, and let $c, d$ be scalars. \\
+
+    \begin{enumerate}
+        \item Commutativity: $A + B = B + A$
+        \item Associativity: $(A + B) + C = A + (B + C)$
+        \item $A + 0 = A$
+        \item $A + (-A) = 0$
+        \item Distributivity: $c (A + B) = c A + c B$
+        \item Distributivity: $(c + d) A = c A + d A$
+        \item $c (d A) = (cd) A$
+        \item $1 A = A$
+    \end{enumerate}
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Properties of Matrix Addition and Scalar Multiplication};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.975\textwidth}
+    Let $A, B, C$ be matrices whose sizes are such that the indicated operations can be performed, and let $k$ be a scalar. \\
+
+    \begin{enumerate}
+        \item Associativity: $A (BC) = (AB) C$
+        \item Left Distributivity: $A (B + C) = AB + AC$
+        \item Right Distributivity: $(A + B) C = AC + BC$
+        \item $k (AB) = (kA) B = A (kB)$
+        \item Multiplicative Identity: $I_m A = A = A I_n$ if $A$ is $m \times n$
+        \item In general, no commutativity: $AB \neq BA$.
+        \item Therefore, $(A + B)^2 = A^2 + 2AB + B^2$ if and only if $A$ and $B$ do commute, i.e. $AB + BA = 2AB$.
+        \item Moreover, $A^2 = 0$ does \textit{not} imply that $A = 0$.
+    \end{enumerate}
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Properties of Matrix Multiplication};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.975\textwidth}
+    If $A$ is a square matrix, and $k, r, s$ are non-negative integers, then \\
+
+    \begin{enumerate}
+        \item $A^0 = I_n$
+        \item $A^2 = AA$
+        \item $A^k = A \dots A$
+        \item $A^r A^s = A^{r+s}$
+        \item $(A^r)^s = A^{rs}$
+    \end{enumerate}
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Properties of Matrix Powers};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.975\textwidth}
+    A square matrix $A$ is called \textbf{idempotent} if $A^2 = A$; and \textbf{nilpotent} if $A^m = 0$ for some $m > 1$.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.975\textwidth}
+    Let $A, B$ be matrices whose sizes are such that the indicated operations can be performed, and let $k$ be a scalar. \\
+
+    \begin{enumerate}
+        \item $(A^T)^T = A$
+        \item $(A + B)^T = A^T + B^T$
+        \item $(kA)^T = k (A^T)$
+        \item $(AB)^T = B^T A^T$
+        \item $(A^r)^T = (A^T)^r$ for all non-negative integers $r$
+    \end{enumerate}
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Properties of Matrix Transpositions};
+\end{tikzpicture}
+
+\begin{paracol}{2}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    The \textbf{trace} of an $n \times n$ matrix is the sum of the $n$ values on its diagonal:
+
+    $$\text{Tr}: \mathbb{R}^{n \times n} \rightarrow \mathbb{R}, \quad \text{Tr}[A] \equiv \sum_{i=1}^n a_{ii}$$
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+\switchcolumn
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    \begin{enumerate}
+        \item $\text{Tr}[\alpha A + \beta B] = \alpha \text{Tr}[A] + \beta \text{Tr}[B] \qquad$ (linear)
+        \item $\text{Tr}[AB] = \text{Tr}[BA]$
+        \item $\text{Tr}[ABC] = \text{Tr}[CAB] = \text{Tr}[BCA] \qquad$ (cyclic)
+        \item $\text{Tr}[A^T] = \text{Tr}[A]$
+        \item $\text{Tr}[A] = \sum_{i=1}^n \lambda_i$, where $\{ \lambda_i \}$ are its eigenvalues.
+    \end{enumerate}
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Properties of Traces};
+\end{tikzpicture}
+
+\end{paracol}
+
+\newpage
+
+\subsection{Matrix Multiplication - TODO: remove this section, merge into previous page}
+
+\begin{paracol}{2}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    Let $A$ be an $m \times n$ matrix and $B$ be an $n \times p$ matrix.
+    The product of $A$ and $B$ is the $m \times p$ matrix
+    $$AB = [A \mathbf{b}_1, A \mathbf{b}_2, \ldots, A \mathbf{b}_p]$$
+    where $\mathbf{b}_1, \mathbf{b}_2, \ldots, \mathbf{b}_p$ are the columns of $B$.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+Each column of $AB$ is a linear combination of the columns of $A$, which all have $m$ elements.
+So just like $A$, the matrix $AB$ has $m$ rows.
+On the other hand, the column-by-column computation of $AB$ shows that $AB$ and $B$ have the same number of columns $p$.
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    Element $(i, j)$ of $AB$ is the dot product of the $i$-th row of $A$ and the $j$-th column of $B$:
+    $$(AB)_{ij} = \mathbf{a}_i^T \mathbf{b}_j = a_{i1} b_{1j} + a_{i2} b_{2j} + \ldots + a_{in} b_{nj}$$
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+\switchcolumn
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    \textbf{Properties of Matrix Multiplication}:
+    \begin{enumerate}
+        \item Left-Distributive: $A(B + C) = AB + AC$
+        \item Right-Distributive: $(A + B)C = AC + BC$
+        \item Associative: $A(BC) = (AB)C$
+        \item Identity: $I_m A = A = A I_n$
+        \item Zero: $0_{k \times m} A_{m \times n} = 0_{k \times n}$ and $A_{m \times n} 0_{n \times l} = 0_{m \times l}$
+    \end{enumerate}
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    Suppose $A$ and $B$ are matrices such that $AB$ is defined.
+    Then
+    $$(AB)^T = B^T A^T$$
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    Given the associative property of matrix multiplication, for any integer $k \geq 1$, the $k$-th power of a square matrix
+    $$A^k = A A^{k-1} = A \dots A$$
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\end{paracol}
+
+\subsection{Special Types of Matrices - TODO: refactor}
+
+\begin{itemize}
+    \item \textbf{Elementary matrices} can be used to perform elementary row operations by matrix multiplication.
+    \item \textbf{Triangular matrices} have special properties when it comes to the calculation of determinants and eigenvalues.
+    \item \textbf{Diagonal matrices} are used to perform element-wise operations on vectors, since calculation with such matrices is the closest to calculation with scalars.
+\end{itemize}
+
+\begin{paracol}{2}
+
+\subsubsection{Elementary Matrices}
+
+An elementary matrix $E$ is any matrix that can be obtained by performing an elementary row operation on an identity matrix $I_n$.
+
+If the same elementary row operation is performed on an $n \times r$-matrix $A$, the result is the same as the matrix $EA$.
+Thus, elementary matrices make it possible to describe row operations in the language of matrix multiplication.
+
+\switchcolumn
+
+\textbf{Permutation matrices} are orthogonal matrices permuting one or more rows, e.g. $PA = \begin{bmatrix}
+    0 & 1 \\
+    1 & 0
+\end{bmatrix} \begin{bmatrix}
+    a & b \\
+    c & d
+\end{bmatrix} = \begin{bmatrix}
+    c & d \\
+    a & b
+\end{bmatrix}$, or columns, e.g. $AP = \begin{bmatrix}
+    a & b \\
+    c & d
+\end{bmatrix} \begin{bmatrix}
+    0 & 1 \\
+    1 & 0
+\end{bmatrix} = \begin{bmatrix}
+    b & a \\
+    d & c
+\end{bmatrix}$.
+All permutation matrices are elementary matrices, because swapping rows is a type of row operation. However, not all elementary matrices are permutation matrices. The other types of row operations (scaling a row, adding a multiple of one row to another) cannot be achieved with a simple rearrangement.
+
+\end{paracol}
+
+\subsubsection{Triangular Matrices}
+
+\begin{paracol}{2}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    Let $A$ be an $n \times n$ matrix.
+    The \textbf{main diagonal} of $A$ consists of the entries $A_{ii}$ (with $1 \leq i \leq n$) with equal row and column number.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    $A$ is an \textbf{upper triangular matrix} if all entries below the main diagonal are zero, i.e. $A_{ij} = 0$ for $n \geq i > j \geq 1$. \\
+    
+    $A$ is a \textbf{lower triangular matrix} if all entries above the main diagonal are zero, i.e. $A_{ij} = 0$ for $n \geq j > i \geq 1$.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+Triangular matrices are useful because
+
+\begin{itemize}
+    \item it is easy to calculate the \textit{determinant} of a triangular matrix.
+    \item it is easy to find the \textit{eigenvalues} of a triangular matrix.
+    \item triangularity of matrices behaves nicely with respect to matrix multiplication:
+\end{itemize}
+
+\switchcolumn
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    Let $A$ and $B$ be two upper triangular $n \times n$ matrices. Then the product $AB$ is also an upper triangular matrix. \\
+
+    Let $A$ and $B$ be two lower triangular $n \times n$ matrices. Then the product $AB$ is also a lower triangular matrix.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\begin{itemize}
+    \item many square matrices can be written as the product of a \textit{lower matrix} and an \textit{upper diagonal matrix} - which is faster to solve many non-homogeneous systems $A\mathbf{x} = \mathbf{b}$:
+\end{itemize}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    Let $A$ be a matrix such that some elementary matrices $E_i$ row-reduce $A$ to an upper-triangular matrix $U$; that is, $E_3 E_2 E_1 A = U$. Then the inverse of these elementary operations gives a lower-triangular matrix $L = E_1^{-1} E_2^{-1} E_3^{-1}$. \\
+
+    The \textbf{LU decomposition} of matrix $A$ is given by:
+
+    $$A = LU ( = E_1^{-1} E_2^{-1} E_3^{-1} E_3 E_2 E_1 A )$$
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\end{paracol}
+
+\subsubsection{Diagonal Matrices}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.975\textwidth}
+    A square matrix whose non-diagonal entries are all zero is called a \textbf{diagonal matrix}: $A_{ij} = 0 \text{ for } i \neq j (\text{where } 1 \leq i, j \leq n)$.
+
+    A diagonal matrix all of whose diagonal entries are the same is called a \textbf{scalar matrix}.
+
+    If the scalar on the diagonal is $1$, the scalar matrix is called an identity matrix.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.975\textwidth}
+    Let $A$ be an $n \times n$ diagonal matrix and $B$ be an $n \times n$ matrix. Then the following holds:
+    \begin{enumerate}
+        \item $AB$ is also a diagonal matrix with diagonal elements $(AB)_{ii} = A_{ii} B_{ii}$.
+        \item Multiplication of diagonal matrices is commutative: $AB = BA$.
+        \item For any integer $k \geq 0$, $A^k$ is also a diagonal matrix, with diagonal elements $(A^k)_{ii} = A_{ii}^k$.
+    \end{enumerate}
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\subsubsection{Orthogonal Matrices}
+
+\begin{paracol}{2}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    An \textbf{orthogonal matrix} is a square matrix whose columns (and rows) form a set of orthonormal vectors such that
+
+    \vspace{-10pt}
+
+    $$A^{-1} = A^T \iff AA^T = I, A^TA = I$$
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+\vspace{-20pt}
+
+\begin{align*}
+    \textbf{Proof}:  \quad & A^T A = \begin{bmatrix}
+        a_1^T \\ a_2^T
+    \end{bmatrix} \begin{bmatrix}
+        a_1 & a_2
+    \end{bmatrix} = \begin{bmatrix}
+        a_1^T a_1 & a_1^T a_2 \\
+        a_2^T a_1 & a_2^T a_2
+    \end{bmatrix} = I \\
+    & \iff a_1^T a_1 = a_2^T a_2 = 1, a_1^T a_2 = a_2^T a_1 = 0
+\end{align*}
+
+\switchcolumn
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    Let $A$ be an $n \times n$ orthogonal matrix, and $\mathbf{x}$ an $n \times 1$ column vector. \\
+    
+    An orthogonal matrix preserves lengths:
+
+    $$|| A \mathbf{x} ||^2 = (A \mathbf{x})^T (A \mathbf{x}) = \mathbf{x}^T A^T A \mathbf{x} = \mathbf{x}^T I \mathbf{x} = \mathbf{x}^T I \mathbf{x} = || \mathbf{x} ||^2$$
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+\end{paracol}
+
+\subsection{Matrix Inversion}
+
+\begin{paracol}{2}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    Let $A$ be an $n \times n$ matrix. The \textbf{inverse} of $A$ is the matrix $A^{-1}$ such that
+    $AA^{-1} = A^{-1}A = I_n$.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    An $n \times n$ matrix $A$ is called \textbf{invertible} if $A$ has an inverse, and \textbf{singular} otherwise.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+\switchcolumn
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    If $A$ is invertible,
+
+    \begin{enumerate}
+        \item its RREF of is the identity matrix $I_n$, i.e. it has a pivot position in every row and column
+        \item the system $A \mathbf{x} = \mathbf{b}$ has a unique solution $\mathbf{x} = A^{-1} \mathbf{b}$
+        \item the inverse of $A$ is \textbf{unique}:
+        $$C = C I_n = C (A D) = (C A) D = I_n D = D$$
+    \end{enumerate}
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\end{paracol}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.975\textwidth}
+    Let $A$ and $B$ be $n \times n$ matrices. Then the following holds:
+
+    \begin{enumerate}
+        \item If $A$ is invertible, then $A^{-1}$ is invertible and $(A^{-1})^{-1} = A$. \\
+
+        \item If $A$ and $B$ are invertible matrices of the same size, then $AB$ is invertible and $(AB)^{-1} = B^{-1} A^{-1}$.
+
+        (If $A$ and $B$ are invertible \textit{diagonal} matrices of the same size, then $AB$ is invertible and $(AB)^{-1} = B^{-1} A^{-1} = A^{-1} B^{-1}$.)
+        \item If $A$ and / or $B$ is / are singular, then $AB$ is singular. \\
+
+        \item If $A$ is invertible, then $A^T$ is invertible and $(A^T)^{-1} = (A^{-1})^T$.
+        \item If $A$ is singular, then $A^T$ is singular.
+        \item Let $A$ be an $m \times n$ matrix. Then $\text{Rank}(A^T A) = \text{Rank}(A)$. The $n \times n$ matrix $A^T A$ is invertible if and only if $\text{Rank}(A) = n$. \\
+
+        \item If $A$ is invertible and $c$ is a non-zero scalar, then $cA$ is invertible and $(cA)^{-1} = \frac{1}{c} A^{-1}$.
+        \item If $A$ is invertible, then $A^n$ is invertible for all non-negative integers $n$ and $(A^n)^{-1} = (A^{-1})^n$.
+        \item If $A$ is invertible and $n$ is a positive integer, then $A^{-n} = (A^n)^{-1} = (A^{-1})^n$.
+    \end{enumerate}
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\textbf{Proofs}:
+
+\begin{enumerate}
+    \item Assume that $A$ is invertible. Then there is a matrix $C$ such that $A^{-1}C = C A^{-1} = I_n$, namely $C=A$. So we find that $A^{-1}$ is invertible, and $A^{-1} = A$.
+    \item Assume that $A$ and $B$ are invertible, and define $C = B^{-1} A^{-1}$. Then $(AB)C = ABB^{-1}A^{-1} = A I A^{-1} = A A^{-1} = I_n$. Similarly, $C(AB) = B^{-1} A^{-1} AB = B^{-1} I B = B^{-1} B = I_n$. So we find that $AB$ is invertible, and $(AB)^{-1} = C = B^{-1} A^{-1}$.
+    \item Assume that $A$ is invertible. Let $C = (A^{-1})^T$. Then $A^T C = A^T (A^{-1})^T = (A^{-1} A)^T = I^T = I$. Similarly, $C A^T = I$. So $A^T$ is invertible, and $(A^T)^{-1} = C = (A^{-1})^T$.
+    \item Since $(A^T)^T = A$, the contrapositive of the previous statement is equivalent to this statement. That is, if $A^T$ is invertible, then $A$ is invertible. And so if $A$ is singular, then $A^T$ is singular.
+\end{enumerate}
+
+\begin{paracol}{2}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    Let $A = \begin{bmatrix} a & b \\ c & d \end{bmatrix}$.
+    Then $A$ is invertible if and only if $ad - bc \neq 0$ s.t. $A^{-1} = \frac{1}{ad - bc} \begin{bmatrix} d & -b \\ -c & a \end{bmatrix}$. \\
+
+    If $ad - bc = 0$, then $A$ is singular.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\textbf{Example}: The matrix $\begin{bmatrix}
+    1 & 0 \\ 0 & 0
+\end{bmatrix}$ is singular.
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    Every diagonal matrix is invertible, unless one of its diagonal elements is zero.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    Every elementary matrix is invertible, and its inverse is an elementary matrix of the same type.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    Let $A$ be a square matrix. If a sequence of elementary row operations reduces $A$ to $I$, then the same sequence of elementary row operations transforms $I$ into $A^{-1}$.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\switchcolumn
+
+Let $A$ be an $m \times n$ matrix. Then
+
+\begin{enumerate}
+    \item If $A$ has a pivot position in every row, $A \mathbf{x} = \mathbf{b}$ has \textit{at least one} solution for each $\mathbf{b} \in \mathbb{R}^m$, the columns of $A$ span $\mathbb{R}^m$, and $A$ has rank $m$.
+    \item If $A$ has a pivot position in every column, $A \mathbf{x} = \mathbf{b}$ has \textit{at most one} solution for each $\mathbf{b} \in \mathbb{R}^m$, the columns of $A$ are linearly independent, and $A$ has rank $n$.
+\end{enumerate}
+
+\vspace{5pt}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    Let $A_{n \times n}$ be a square matrix. Then the following statements are equivalent: \\
+
+    \begin{enumerate}
+        \item $A$ is invertible. \\
+
+        \item $A$ has a pivot position in every row.
+
+        \item Equation $A \mathbf{x} = \mathbf{b}$ has \textit{at least} one solution for each $\mathbf{b} \in \mathbb{R}^n$.
+
+        \item The columns of $A$ span $\mathbb{R}^n$. \\
+
+        \item $A$ has a pivot position in every column.
+
+        \item $A \mathbf{x} = \mathbf{b}$ has \textit{at most} one solution for each $\mathbf{b} \in \mathbb{R}^n$.
+
+        \item The columns of $A$ are linearly independent.
+
+        \item $A$ has rank $n$.
+    \end{enumerate}
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {The Invertible Matrix Theorem};
+\end{tikzpicture}
+
+\end{paracol}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.975\textwidth}
+    Let $A$ be an $n \times n$ matrix. Perform row reduction on the super-augmented matrix $[A | I_n]$.
+
+    \begin{itemize}
+        \item If $A \sim I_n$ by performing row reduction, i.e. $[A | I_n] \sim [I_n | B]$, then $A$ is invertible and $B = A^{-1}$.
+        \item If $A \not\sim I_n$, then $A$ is singular.
+    \end{itemize}
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Gauss-Jordan Method for Matrix Inversion};
+\end{tikzpicture}
+
+\subsection{Inverses of Non-Square Matrices}
+
+\begin{paracol}{2}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    Let $A$ be an $m \times n$ matrix.
+    A \textbf{right inverse} of $A$ is an $n \times m$ matrix $C$ such that $AC = I_m$.
+    A \textbf{left inverse} of $A$ is an $n \times m$ matrix $D$ such that $DA = I_n$.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    Let $A$ be an $m \times n$ matrix, and $b$ be a vector in $\mathbb{R}^m$.
+
+    \begin{itemize}
+        \item If $A$ has a right inverse $C$, then the system $A \mathbf{x} = \mathbf{b}$ has \textit{at least} one solution $\mathbf{x} = C \mathbf{b}$.
+        \item If $A$ has a left inverse $D$, then the system $A \mathbf{x} = \mathbf{b}$ has \textit{at most} one solution, which if it exists must be $\mathbf{x} = D \mathbf{b}$.
+    \end{itemize}
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\textbf{Proof}:
+
+Let $A$ be an $m \times n$ matrix and $b$ a vector in $\mathbb{R}^m$.
+Suppose that $A$ has a right inverse $C$. Take $\mathbf{x} = C \mathbf{b}$. Then $A \mathbf{x} = A C \mathbf{b} = I_m \mathbf{b} = \mathbf{b}$.
+You see that $\mathbf{x} = C \mathbf{b}$ is a solution. Hence the system has at least one solution.
+Now suppose that $A$ has a left inverse $D$ and suppose that there is a vector $\mathbf{x} \in \mathbb{R}^n$ such that $A \mathbf{x} = \mathbf{b}$.
+Then $D A \mathbf{x} = D \mathbf{b}$. Since $D A = I_n$, it follows that $\mathbf{x} = D \mathbf{b}$. Hence the system has at most one solution, $\mathbf{x} = D \mathbf{b}$.
+
+\switchcolumn
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    Let $A$ be an $m \times n$ matrix. Then the following statements are equivalent: \\
+
+    \begin{enumerate}
+        \item There exists a matrix $C$ such that $AC = I_m$; that is, a \textbf{right inverse}.
+        \item For each $\mathbf{b} \in \mathbb{R}^m$, the system $A \mathbf{x} = \mathbf{b}$ has \textit{at least} one solution.
+        \item The columns of $A$ span $\mathbb{R}^m$.
+        \item $A$ has a pivot position in every row.
+        \item $A$ has rank $m$.
+    \end{enumerate}
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    Let $A$ be an $m \times n$ matrix. Then the following statements are equivalent: \\
+
+    \begin{enumerate}
+        \item There exists a matrix $D$ such that $DA = I_n$; that is, a \textbf{right inverse}.
+        \item For each $\mathbf{b} \in \mathbb{R}^n$, the system $A \mathbf{x} = \mathbf{b}$ has \textit{at most} one solution.
+        \item The columns of $A$ are linearly independent.
+        \item $A$ has a pivot position in every column.
+        \item $A$ has rank $n$.
+    \end{enumerate}
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\end{paracol}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.975\textwidth}\textbf{Existence of an Inverse}: Let $A$ be an $m \times n$ matrix.
+
+    \begin{enumerate}
+        \item If $A$ has a right inverse $C$, then $A$ is invertible, and $A^{-1} = C$.
+        \item If $A$ has a left inverse $D$, then $A$ is invertible, and $A^{-1} = D$.
+        \item $C \neq D$
+    \end{enumerate}
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+Consequently, if $A_{n \times n}$ and $B_{n \times n}$ are sqare matrices, if the product $AB$ is invertible, then $A$ and $B$ are invertible.

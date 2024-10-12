@@ -1,0 +1,271 @@
+\section{Determinants}
+
+\begin{paracol}{2}
+
+	\begin{tikzpicture}
+		\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+				Let $A$ be an $n \times n$ matrix. Then the following statements are equivalent:
+
+				\begin{enumerate}
+					\item $\text{det}(A) \neq 0$
+					\item The row vectors in $A$ are linearly independent.
+					\item $A$ is invertible.
+				\end{enumerate}
+			\end{minipage}};
+		\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+	\end{tikzpicture}
+
+	\begin{tikzpicture}
+		\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+				The \textbf{determinant} of a $2 \times 2$ matrix $A = \begin{bmatrix} a & b \\ c & d \end{bmatrix}$ is
+
+				$$\text{det}(A) = | A | = \begin{vmatrix} a & b \\ c & d \end{vmatrix} = ad - bc$$
+			\end{minipage}};
+		\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+	\end{tikzpicture}
+
+	\begin{tikzpicture}
+		\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+				The \textbf{determinant} of a $3 \times 3$ matrix $A = \begin{bmatrix}
+						a_{11} & a_{12} & a_{13} \\
+						a_{21} & a_{22} & a_{23} \\
+						a_{31} & a_{32} & a_{33}
+					\end{bmatrix}$ is
+
+				\vspace{-20pt}
+
+				\begin{align*}
+					\text{det}(A) = | A | & = a_{11} \det(A_{11}) - a_{12} \det(A_{12}) + a_{13} \det(A_{13}) \\
+					                      & = \sum_{j=1}^3 (-1)^{1+j} a_{ij} \det(A_{1j})
+				\end{align*}
+			\end{minipage}};
+		\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+	\end{tikzpicture}
+
+	This leads to the definition of cofactors and the checkerboard-pattern of the Laplace Expansion Theorem - which is particularly useful when the matrix is upper or lower triangular.
+
+	\switchcolumn
+
+	\begin{tikzpicture}
+		\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+				The \textbf{cofactor} $C_{ij}$ of element $a_{ij}$ of an $n \times n$ matrix $A$ is
+
+				$$C_{ij} = (-1)^{i+j} \text{det}(A_{ij})$$
+
+				where $A_{ij}$ is the $(n-1) \times (n-1)$ matrix obtained by deleting the $i$-th row and $j$-th column of $A$.
+			\end{minipage}};
+		\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+	\end{tikzpicture}
+
+	\begin{tikzpicture}
+		\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+				For an $n \times n$ matrix $A = [a_{ij}]$, where $n \geq 2$:
+				\begin{itemize}
+					\item across row $i$:
+					      $$\text{det}(A) = \sum_{j=1}^n a_{ij} C_{ij} \qquad ( = \sum_{j=1}^n a_{ij} (-1)^{i+j} \text{det}(A_{ij}) )$$
+					\item down column $j$:
+					      $$\text{det}(A) = \sum_{i=1}^n a_{ij} C_{ij} \qquad ( = \sum_{i=1}^n a_{ij} (-1)^{i+j} \text{det}(A_{ij}) )$$
+				\end{itemize}
+			\end{minipage}};
+		\node[rounded-box-title, left=10pt] at (box.north east) {Laplace Expansion Theorem};
+	\end{tikzpicture}
+
+	\begin{tikzpicture}
+		\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+				The determinant of a triangular matrix is the product of the entries on its main diagonal.
+
+				Specifically, if $A = [a_{ij}]$ is an $n \times n$ \textbf{triangular matrix}, then
+
+				$$\text{det}(A) = a_{11} a_{22} \dots a_{nn}$$
+			\end{minipage}};
+		\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+	\end{tikzpicture}
+
+\end{paracol}
+
+\subsection{Matrix Algebra}
+
+\begin{paracol}{2}
+
+	\begin{tikzpicture}
+		\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+				Let $A, B, C$ be $n \times n$ matrices. Then: \\
+
+				\begin{enumerate}
+					\item If $A$ has a zero row (or column), then $\det(A) = 0$.
+					\item If $A$ has two identical rows (or columns), then $\det(A) = 0$.
+					\item $\text{det}(A^T) = \text{det}(A)$.
+					\item If $A$ is invertible, then $\text{det}(A^{-1}) = \frac{1}{\text{det}(A)}$. \\
+
+					\item If $B$ is obtained by interchanging two rows (or columns) of $A$, then $\det(B) = - \det(A)$.
+					\item If $B$ is obtained by adding a multiple of one row (or column) of $A$ to another row (or column) of $A$, then $\det(B) = \det(A)$.
+					\item If $B$ is obtained by multiplying a row (or column) of $A$ by $c$, then $\det(B) = c \det(A)$. \\
+
+					\item $\text{det}(AB) = \text{det}(A) \text{det}(B)$.
+					\item If $A, B, C$ are identical except that the $i^{th}$ row (or column) of $C$ is the sum of the $i^{th}$ rows (or columns) of $A$ and $B$, then $\det(C) = \det(A) + \det(B)$.
+				\end{enumerate}
+			\end{minipage}};
+		\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+	\end{tikzpicture}
+
+	\begin{tikzpicture}
+		\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+				For any scalar $c$, $\text{det}(cA) = c^n \text{det}(A)$
+
+				(one power of $c$ for every row of the matrix).
+			\end{minipage}};
+		\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+	\end{tikzpicture}
+
+	\begin{tikzpicture}
+		\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+				If $A$ is an $n \times n$ matrix and $E$ is an $n \times n$ elementary matrix, then $\text{det}(EA) = \text{det}(E) \, \text{det}(A)$.
+			\end{minipage}};
+		\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+	\end{tikzpicture}
+
+	\switchcolumn
+
+	\begin{tikzpicture}
+		\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+				Let $E$ be an $n \times n$ elementary matrix.
+
+				\begin{enumerate}
+					\item If $E$ results from interchanging two rows of $I_n$, then $\det(E) = -1$.
+					\item If $E$ results from multiplying one row of $I_n$, by $k$, then $\det(E) = k$.
+					\item If $E$ results from adding a multiple of one row of $I_n$ to another row, then $\det(E) = 1$.
+				\end{enumerate}
+			\end{minipage}};
+		\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+	\end{tikzpicture}
+
+	\begin{tikzpicture}
+		\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+				Let $A$ be an $n \times n$ matrix, and $R$ its RREF. Then
+				$$| R | = | E_q | | E_{q-1} | \dots | E_1 | | A |, \quad | E | \neq 0$$
+				where $E_1, \dots, E_q$ are the elementary matrices that row reduce $A$ to $R$.
+
+				$A$ is invertible if and only if $\det(A) \neq 0$.
+
+				\begin{itemize}
+					\item if $R = I$, then $| R | = | I | = 1$, $| A | \neq 0$ and $A$ is invertible,
+					\item if $R \neq I$, then $R$ must have a zero row, so $| R | = 0$, $| A | = 0$ and $A$ is singular.
+				\end{itemize}
+			\end{minipage}};
+		\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+	\end{tikzpicture}
+
+	\begin{tikzpicture}
+		\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+				Let $A_i(\mathbf{b})$ denote the matrix obtained by replacing the $i^{th}$ column of $A$ by $\mathbf{b}$: $A_i(\mathbf{b}) = [ \mathbf{a}_1 \dots \mathbf{b} \dots \mathbf{a}_n ]$.
+
+				Let $A$ be an invertible $n \times n$ matrix and let $\mathbf{b}$ be a vector in $\mathbb{R}^n$. Then the unique solution $\mathbf{x}$ of the system $A \mathbf{x} = \mathbf{b}$ is given by
+
+				\vspace{-15pt}
+
+				$$x_i = \frac{\det(A_i(\mathbf{b}))}{\det(A)} \text{ for } i = 1, \dots, n$$
+			\end{minipage}};
+		\node[rounded-box-title, left=10pt] at (box.north east) {Cramer's Rule};
+	\end{tikzpicture}
+
+\end{paracol}
+
+\subsection{Geometry}
+
+\begin{tikzpicture}
+	\node [rounded-box] (box){\begin{minipage}{0.975\textwidth}
+			The determinant is the "volume" of the geometric shape whose edges are the rows of the matrix:
+
+			\begin{enumerate}
+				\item For $2 \times 2$ matrices, the determinant corresponds to the area of a parallelogram.
+				\item For $3 \times 3$ matrices, the determinant corresponds to the volume of a parallelepiped.
+				\item For dimensions $d > 3$, the determinant measures a $d$-dimensional hyper-volume.
+			\end{enumerate}
+		\end{minipage}};
+	\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+\begin{paracol}{2}
+
+	\begin{tikzpicture}
+		\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+				Let $A$ be a $2 \times 2$ matrix with rows $\mathbf{r}_1, \mathbf{r}_2$ and columns $\mathbf{k}_1, \mathbf{k}_2$. \\
+
+				$P_r$ is the parallelogram in $\mathbb{R}^2$ spanned by $\mathbf{r}_1, \mathbf{r}_2$.
+				$P_k$ is the parallelogram in $\mathbb{R}^2$ spanned by $\mathbf{k}_1, \mathbf{k}_2$.
+
+				$$\text{Area}(P_r) = \text{Area}(P_k) = |\text{det}(A)| = \text{abs}(\text{det}(A))$$
+			\end{minipage}};
+		\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+	\end{tikzpicture}
+
+	\switchcolumn
+
+	\begin{tikzpicture}
+		\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+				Let $A$ be a $3 \times 3$ matrix with rows $\mathbf{r}_1, \mathbf{r}_2, \mathbf{r}_3$ and columns $\mathbf{k}_1, \mathbf{k}_2, \mathbf{k}_3$. \\
+
+				$P_r$ is the parallelopiped in $\mathbb{R}^3$ spanned by $\mathbf{r}_1, \mathbf{r}_2, \mathbf{r}_3$.
+				$P_k$ is the parallelopiped in $\mathbb{R}^3$ spanned by $\mathbf{k}_1, \mathbf{k}_2, \mathbf{k}_3$.
+
+				\vspace{-10pt}
+
+				$$\text{Volume}(P_r) = \text{Volume}(P_k) = |\text{det}(A)| = \text{abs}(\text{det}(A))$$
+			\end{minipage}};
+		\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+	\end{tikzpicture}
+
+\end{paracol}
+
+\begin{tikzpicture}
+	\node [rounded-box] (box){\begin{minipage}{0.975\textwidth}
+			Consider a linear transformation $T: \mathbb{R}^n \rightarrow \mathbb{R}^n$ defined through the matrix-vector product with a matrix $A^T$. \\
+
+			After passing through $T$, the region is transformed to an area / volume / hyper-volume $\det(A^T)$. \\
+
+			$\det(A^T)$ is the scale-factor associated with the linear transformation $T$:
+
+			\begin{enumerate}
+				\item Linear transformations that "shrink" areas have $\det(A^T) < 1$.
+				\item Linear transformations that preserve areas have $\det(A^T) = 1$.
+				\item Linear transformations that "enlarge" areas have $\det(A^T) > 1$.
+			\end{enumerate}
+		\end{minipage}};
+	\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+	\node [rounded-box] (box){\begin{minipage}{0.975\textwidth}
+			If $T: \mathbb{R}^n \rightarrow \mathbb{R}^n$ is a linear transformation with $n \times n$ standard matrix $A$, and $S$ is a region in $\mathbb{R}^n$, then:
+
+			$$\text{Volume}(T(S)) = |\text{det}(A)| \text{Volume}(S)$$
+		\end{minipage}};
+	\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+Orthogonal transformations preserve volumes, orthogonal projections do not:
+
+\begin{paracol}{2}
+
+	\begin{tikzpicture}
+		\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+				Let $T: \mathbb{R}^n \rightarrow \mathbb{R}^n$ be an \textbf{orthogonal transformation}. \\
+
+				Then for any region $R$ in $\mathbb{R}^n$, $\text{Volume}(T(R)) = \text{Volume}(R)$.
+			\end{minipage}};
+		\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+	\end{tikzpicture}
+
+	\switchcolumn
+
+	\begin{tikzpicture}
+		\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+				Let $V$ be a linear subspace of $\mathbb{R}^n$ not equal to $\mathbb{R}^n$.
+				Let $P: \mathbb{R}^n \rightarrow \mathbb{R}^n$ be the \textbf{orthogonal projection} on $V$. \\
+
+				Then for any region $R$ in $\mathbb{R}^n$, $\text{Volume}(P(R)) = 0$.
+			\end{minipage}};
+		\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+	\end{tikzpicture}
+
+\end{paracol}

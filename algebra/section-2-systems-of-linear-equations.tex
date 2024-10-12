@@ -1,0 +1,255 @@
+\section{Systems of Linear Equations}
+
+A system of linear equations can be solved by converting it to an augmented matrix $A \mathbf{x} = \mathbf{b}$, reducing it to echelon form, and finally to reduced echelon form:
+
+\begin{paracol}{3}
+
+System of equations:
+
+\vspace{-20pt}
+
+\begin{align*} 
+    x_1 + 2 x_2 &= 5 \\ 
+    x_1         &= 3 \\  
+    x_1 + 2 x_2 &= 5  
+\end{align*}
+
+\switchcolumn
+
+Vector equation:
+
+$$x_1 \begin{bmatrix}1 \\ 1 \\ 1\end{bmatrix} + x_2 \begin{bmatrix}2 \\ 0 \\ 2\end{bmatrix} = \begin{bmatrix}5 \\ 3 \\ 5\end{bmatrix}$$
+
+\switchcolumn
+
+Matrix-vector equation:
+
+$$
+\begin{bmatrix}
+    1 & 2 \\
+    1 & 0 \\
+    1 & 2 \\
+\end{bmatrix}
+\begin{bmatrix}
+    x_1 \\
+    x_2 \\
+\end{bmatrix}
+=
+\begin{bmatrix}
+    5 \\
+    3 \\
+    5 \\
+\end{bmatrix}
+$$
+
+\switchcolumn
+
+Augmented matrix:
+
+$$
+\left[\begin{array}{cc|c}
+    1 & 2 & 5 \\
+    1 & 0 & 3 \\
+    1 & 2 & 5 \\
+\end{array}\right]
+$$
+
+\switchcolumn
+
+Echelon form:
+
+$$
+\left[\begin{array}{cc|c}
+    1 & 2 & 5 \\
+    0 & -2 & -2 \\
+    0 & 0 & 0 \\
+\end{array}\right]
+$$
+
+\switchcolumn
+
+RREF:
+
+$$
+\left[\begin{array}{cc|c}
+    1 & 0 & 3 \\
+    0 & 1 & 1 \\
+    0 & 0 & 0 \\
+\end{array}\right]
+$$
+
+\end{paracol}
+
+\begin{paracol}{2}
+
+\switchcolumn
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    A \textbf{linear equation} is an equation of the form
+    $$a_1 x_1 + \dots + a_n x_n = b$$
+    with coefficients $a_i$, variables $x_i$ and scalar $b$.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+\switchcolumn
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    If an augmented matrix in echelon form has a row of the form $\begin{bmatrix}& 0 & \dots & 0 & | & c &\end{bmatrix}, c \neq 0$, then the corresponding linear system is \textbf{inconsistent}, i.e. it has \textbf{no solution}. \\
+
+    Else, the linear system is \textbf{consistent}, i.e. it has \textbf{\textit{at least} one solution}. \\
+
+    A solution of a linear system is a vector that is simultaneously a solution of each equation in the system. The \textbf{solution set} of is the set of all solutions of a system.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+\textbf{Example}: Is $A\mathbf{x}=\mathbf{0}$ consistent? Yes, $\mathbf{x}=\mathbf{0}$ is always a solution, regardless of $A$. Therefore, $A\mathbf{x}=\mathbf{0}$ has either one or infinitely many solutions.
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    If an augmented matrix in echelon form has a pivot position in every column, then the corresponding linear system has exactly one solution. \\
+
+    If an augmented matrix in echelon form does not have a pivot position in every column, then the corresponding linear system has either zero solutions (if it is consistent), where the variables that correspond to the pivot-less columns can be chosen as free variables, or infinitely many solutions (if it is inconsistent).
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\textbf{Example}: Suppose the augmented matrix corresponding to a consistent system is in echelon form. Then the variables corresponding to a pivot-less column can be chosen as free variables, in \textbf{parametric vector form}:
+
+$$
+\begin{bmatrix}
+    x_1 \\ x_2 \\ x_3
+\end{bmatrix} = \begin{bmatrix}
+    4 \\ 0 \\ 3
+\end{bmatrix} + s \begin{bmatrix}
+    -3 \\ 1 \\ 0
+\end{bmatrix}, s \in \mathbb{R}
+$$
+
+\switchcolumn
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    Let $A = \begin{bmatrix}& \mathbf{a}_1 & \dots & \mathbf{a}_n & \end{bmatrix}$ be an $m \times n$ matrix. \\
+    The following statements are equivalent:
+    \begin{enumerate}
+        \item $A$ has a pivot position in every row.
+        \item $A \mathbf{x} = \mathbf{b}$ is consistent for all $b \in \mathbb{R}^m$.
+        \item $\text{Span}({\mathbf{a}_1, \dots, \mathbf{a}_n}) = \mathbb{R}^m$
+    \end{enumerate}
+    Conversely, the following statements are equivalent:
+    \begin{enumerate}
+        \item Not all rows of $A$ have a pivot position.
+        \item $A \mathbf{x} = \mathbf{b}$ is inconsistent for some, not necessarily all, $b\in \mathbb{R}^m$.
+        \item $\text{Span}({\mathbf{a}_1, \dots, \mathbf{a}_n}) \neq \mathbb{R}^m$
+    \end{enumerate}
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    Let $A = \begin{bmatrix}& \mathbf{a}_1 & \dots & \mathbf{a}_n & \end{bmatrix}$ be an $m \times n$ matrix. \\
+    The following statements are equivalent:
+    \begin{enumerate}
+        \item $A$ has a pivot position in every column.
+        \item $A \mathbf{x} = \mathbf{b}$ has \textit{at most} one solution, i.e. $0$ or $1$.
+        \item $A \mathbf{x} = \mathbf{0}$ has only the \textit{trivial solution} $\mathbf{x}=\mathbf{0}$.
+        \item $\mathbf{a}_1, \dots, \mathbf{a}_n$ are \textit{linearly independent}.
+    \end{enumerate}
+    Conversely, the following statements are equivalent:
+    \begin{enumerate}
+        \item Not all columns of $A$ have a pivot position.
+        \item $A \mathbf{x} = \mathbf{b}$ has either $0$ or infinitely many solutions.
+        \item $A \mathbf{x} = \mathbf{0}$ has infinitely many solutions.
+        \item $\mathbf{a}_1, \dots, \mathbf{a}_n$ are \textit{linearly dependent}.
+    \end{enumerate}
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\switchcolumn
+
+\textbf{Example}: This augmented matrix in echelon form does not have a pivot position in every row, i.e. it is inconsistent for some $\mathbf{\beta}$; but a pivot position in every column, so it has \textbf{either} $0$ - if $\beta_4 \neq 0$ - \textbf{or infinitely many} - if $\beta_4 = 0$ - \textbf{solutions}:
+
+$$
+\left[\begin{array}{ccc|c}
+    1 & 2 & 4 & \beta_1 \\
+    0 & 2 & 2 & \beta_2 \\
+    0 & 0 & 4 & \beta_3 \\
+    0 & 0 & 0 & \beta_4 \\
+\end{array}\right]
+$$
+
+\switchcolumn
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    An \textbf{over-determined linear system} has more equations than variables, and may have any number of solutions.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Corollary};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    An \textbf{under-determined linear system} has fewer equations than variables, and $0$ or infinitely many solutions.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Corollary};
+\end{tikzpicture}
+
+Since each row has at most one pivot position and each column has at most one pivot position, there must be pivot-less columns. This means that if the system is consistent, there must be free variables. One solution is not possible.
+
+\end{paracol}
+
+\subsection{Geometric Interpretation of Linear Systems}
+
+\begin{paracol}{2}
+
+Systems of linear equations in two variables correspond to lines in $\mathbb{R}^2$. It is possible that they intersect in a point, are parallel, or do neither. Non-parallel lines that do not intersect are called skew lines.
+
+Systems of linear equations in three variables correspond to planes in $\mathbb{R}^3$. It is possible that they intersect in a point, in a line, or neither (picture a water wheel).
+
+\begin{center}
+\begin{tabular}{c|c}
+    \textbf{Intersection in} $\mathbf{R}^n$: & \textbf{Number of solutions}: \\
+    \hline
+    A line. & $\infty$ \\
+    A point. & 1 \\
+    None. & 0
+\end{tabular}
+\end{center}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    A system of linear equations is called \textbf{homogeneous} if the constant term in each equation is zero, i.e. $A \mathbf{x} = \mathbf{0}$. \\
+    
+    Since it cannot have no solution, it will either have a unique solution or infinitely many solutions.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+\switchcolumn
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    An \textbf{inhomogeneous system} $A \mathbf{x} = \mathbf{b}$ is one where the origin does not lie in the (hyper-)planes represented by the system - they are shifted by $\mathbf{b}$.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    If a homogeneous system $A \mathbf{x} = \mathbf{0}$ has a solution set $W$, then $A \mathbf{x} = \mathbf{b}$ either is inconsistent or has solution set $\vec{p} + W$ where $\mathbf{p}$ is such that $A \mathbf{x} = \mathbf{p}$, i.e. $\mathbf{p}$ is a particular solution.
+    $$\vec{p} + W = \{\vec{p} + \vec{w} \quad \forall \quad \vec{w} \in W\}$$
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+That is, the solution set of a \textit{consistent} inhomogeneous linear system is parallel to the solution set of its corresponding homogeneous linear system.
+
+\textbf{Example}: $A \mathbf{x} = \mathbf{b}$ has one solution, i.e. $|\{\mathbf{p} + W\}| = 1$. Then the size of the solution set of $A \mathbf{x} = \mathbf{0}$ is also $1$.
+
+\end{paracol}

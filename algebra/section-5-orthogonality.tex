@@ -1,0 +1,448 @@
+\section{Orthogonality}
+
+\subsection{Orthogonal Sets}
+
+\begin{paracol}{2}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    A set $\{\mathbf{v}_1, \dots, \mathbf{v}_k\}$ in $\mathbb{R}^n$ is an \textbf{orthogonal set} if all distinct vectors in the set are pairwise orthogonal:
+    
+    $$\mathbf{v}_i \cdot \mathbf{v}_j = 0 \text{ for } i \neq j$$
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    A set of vectors in $\mathbb{R}^n$ is an \textbf{orthonormal set} if it is an orthogonal set of unit vectors:
+
+    $$||\mathbf{v}_i|| = 1 \text{ for all } i$$
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+\textbf{Example}: Orthonormal set from an orthogonal set
+
+$$
+S = \{ \mathbf{u}, \mathbf{v}, \mathbf{w} \} \Rightarrow \tilde{S} = \{ \frac{1}{||\mathbf{u}||}\mathbf{u}, \frac{1}{||\mathbf{v}||}\mathbf{v}, \frac{1}{||\mathbf{w}||}\mathbf{w} \}
+$$
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    If $S = \{\mathbf{v}_1, \dots, \mathbf{v}_k\}$ is an orthogonal set of non-zero vectors in $\mathbb{R}^n$, then $S$ is linearly independent.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    Let $\{\mathbf{v}_1, \dots, \mathbf{v}_k\}$ be an orthogonal basis for a subspace $W$ of $\mathbb{R}^n$ and let $\mathbf{w}$ be any vector in $W$.
+    Then the unique scalars $c_1, c_2, \dots, c_k$ such that $\mathbf{w} = c_1 \mathbf{v}_1 + c_2 \mathbf{v}_2 + \dots + c_k \mathbf{v}_k$ are given by
+
+    $$c_i = \frac{\mathbf{w} \cdot \mathbf{v}_i}{\mathbf{v}_i \cdot \mathbf{v}_i}$$
+
+    and this representation is unique.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\textbf{Example}: How to use orthogonality to find coordinates:
+
+$$
+S = \{ \mathbf{v}_1, \mathbf{v}_2, \mathbf{v}_3 \} = \{ \begin{bmatrix} 1 \\ 3 \\ -2 \end{bmatrix}, \begin{bmatrix} 2 \\ 0 \\ 1 \end{bmatrix}, \begin{bmatrix} -3 \\ 5 \\ 6 \end{bmatrix} \}, \mathbf{x} = \begin{bmatrix} 1 \\ 2 \\ 0 \end{bmatrix}
+$$
+
+$$
+\mathbf{x} = c_1 \mathbf{v}_1 + c_2 \mathbf{v}_2 + c_3 \mathbf{v}_3
+$$
+
+\vspace{-10pt}
+
+$$
+\begin{cases}
+    \mathbf{x} \cdot \mathbf{v}_1 = c_1 \mathbf{v}_1 \cdot \mathbf{v}_1 + c_2 \mathbf{v}_1 \cdot \mathbf{v}_2 + c_3 \mathbf{v}_1 \cdot \mathbf{v}_3 \\
+    \mathbf{x} \cdot \mathbf{v}_2 = c_1 \mathbf{v}_2 \cdot \mathbf{v}_1 + c_2 \mathbf{v}_2 \cdot \mathbf{v}_2 + c_3 \mathbf{v}_2 \cdot \mathbf{v}_3 \\
+    \mathbf{x} \cdot \mathbf{v}_3 = c_1 \mathbf{v}_3 \cdot \mathbf{v}_1 + c_2 \mathbf{v}_3 \cdot \mathbf{v}_2 + c_3 \mathbf{v}_3 \cdot \mathbf{v}_3
+\end{cases}
+$$
+
+\switchcolumn
+
+\begin{align*}
+\begin{cases}
+    c_1 = \frac{\mathbf{x} \cdot \mathbf{v}_1}{\mathbf{v}_1 \cdot \mathbf{v}_1} & (\text{since } \mathbf{v}_1 \cdot \mathbf{v}_2 = \mathbf{v}_1 \cdot \mathbf{v}_3 = 0) \\
+    c_2 = \frac{\mathbf{x} \cdot \mathbf{v}_2}{\mathbf{v}_2 \cdot \mathbf{v}_2} & (\text{since } \mathbf{v}_2 \cdot \mathbf{v}_1 = \mathbf{v}_2 \cdot \mathbf{v}_3 = 0) \\
+    c_3 = \frac{\mathbf{x} \cdot \mathbf{v}_3}{\mathbf{v}_3 \cdot \mathbf{v}_3} & (\text{since } \mathbf{v}_3 \cdot \mathbf{v}_1 = \mathbf{v}_3 \cdot \mathbf{v}_2 = 0)
+\end{cases}
+\end{align*}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    An \textbf{orthogonal basis} for a subspace $W$ of $\mathbb{R}^n$ is a basis of $W$ that is an orthogonal set.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    Let $H$ be a linear subspace of $\mathbb{R}^n$, and $B = \{\mathbf{b}_1, \dots, \mathbf{b}_k\}$ an orthogonal basis for $H$. Let $\mathbf{x}$ be a vector in $H$. \\
+    
+    Then the coordinates of $\mathbf{x}$ with respect to $B$ are given by the orthogonal projection of $\mathbf{x}$ onto each $\mathbf{b}_i$:
+    $$\mathbf{x} = (\frac{\mathbf{x} \cdot \mathbf{b}_1}{\mathbf{b}_1 \cdot \mathbf{b}_1})\mathbf{b}_1 + \dots + (\frac{\mathbf{x} \cdot \mathbf{b}_k}{\mathbf{b}_k \cdot \mathbf{b}_k})\mathbf{b}_k$$
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    If $B$ is an \textbf{orthonormal basis}, then the coordinates are given by the dot product:
+    $$\mathbf{x} = (\mathbf{x} \cdot \mathbf{b}_1) \mathbf{b}_1 + \dots + (\mathbf{x} \cdot \mathbf{b}_k) \mathbf{b}_k$$
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\textbf{Example}: A property of the standard basis in $\mathbb{R}^n$ is that each standard basis vector is a unit vector.
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    The columns of an $m \times n$ matrix $Q$ form an orthonormal set if and only if $Q^T Q = I_n$.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    A square matrix whose rows and columns each form an orthonormal set is called an \textbf{orthogonal matrix}.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    A square matrix is orthogonal if and only if $Q^{-1} = Q^T$.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    If two square matrices $Q_1, Q_2$ are orthogonal, then so is $Q_1 Q_2$.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\switchcolumn
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    Let $Q$ be an orthogonal matrix. Then \\
+
+    \begin{enumerate}
+        \item $|| Q \mathbf{x} || = || \mathbf{x} ||$ for every $\mathbf{x} \in \mathbb{R}^n$
+        \item $Q \mathbf{x} \cdot Q \mathbf{y} = \mathbf{x} \cdot \mathbf{y}$ for every $\mathbf{x}, \mathbf{y} \in \mathbb{R}^n$
+    \end{enumerate}
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\switchcolumn
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    Let $Q$ be an orthogonal matrix. Then
+
+    \begin{enumerate}
+        \item $Q^{-1}$ is orthogonal
+        \item $\det(Q) = \pm 1$
+        \item If $\lambda$ is an eigenvalue of $Q$, then $| \lambda | = 1$.
+    \end{enumerate}
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\end{paracol}
+
+\subsection{Orthogonal Complements}
+
+Orthogonally decomposing a vector with respect to a linear subspace $H$ comes down to "splitting" the vector into a component in $H$ and a component in the orthogonal of $H$.
+
+\begin{paracol}{2}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    A vector $\mathbf{x}$ is orthogonal to a linear subspace $H$ or $\mathbb{R}^n$ if it is orthogonal to all vectors in $H$. That is: $\mathbf{v} \cdot \mathbf{x} = 0$ for all $\mathbf{x}$ in $H$.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+\switchcolumn
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    The set of all vectors orthogonal to $H$ is the \textbf{orthogonal complement} of $H$, denoted $H^\perp$. That is,
+
+    $H^\perp = \{ \mathbf{v} \in \mathbb{R}^n : \mathbf{v} \cdot \mathbf{x} = 0 \quad \forall \quad \mathbf{x} \in H \}$
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+\end{paracol}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.975\textwidth}
+    Let $W$ be a subspace of $\mathbb{R}^n$. If $W = \text{Span}(\mathbf{w}_1, \dots, \mathbf{w}_k)$, then $\mathbf{v} \in W^\perp$ if and only if $\mathbf{v} \cdot \mathbf{w}_i = 0$ for all $i = 1, \dots, k$.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\textbf{Example}: The orthogonal complement of $\mathbb{R}^n$ is the zero space - $\mathbf{0}$ is the only vector orthogonal to every vector in $\mathbb{R}^n$.
+
+\begin{paracol}{2}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    Let $A$ be an $m \times n$ matrix. Then
+    $$( \text{Row}(A) )^\perp = \text{Nul}(A), \qquad ( \text{Nul}(A) )^\perp = \text{Row}(A)$$
+    $$( \text{Col}(A) )^\perp = \text{Nul}(A^T), \qquad ( \text{Nul}(A) )^\perp = \text{Col}(A^T)$$
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\switchcolumn
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    The $m \times n$ matrix $A$ defines a linear transformation from $\mathbb{R}^n$ to $\mathbb{R}^m$
+
+    \begin{itemize}
+        \item whose range is $\text{Col}(A)$, and
+        \item which sends $\text{Nul}(A)$ to $0$ in $\mathbb{R}^n$.
+    \end{itemize}
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\end{paracol}
+
+\textbf{Proof}: Suppose that $\mathbf{x} \in \text{Nul}(A^T)$, that is, $A^T \mathbf{x} = \mathbf{0}$. This means that $\mathbf{x}$ is orthogonal to each row of $A^T$ and hence to the span of the rows of $A^T$. But the rows of $A^T$ are the columns of $A$. This means that $\mathbf{x}$ is orthogonal to $\text{Col}(A)$.
+
+\begin{paracol}{2}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    Let $H = Span \{\mathbf{v}_1, \dots, \mathbf{v}_k\}$ be a linear subspace of $\mathbb{R}^n$. Then
+    $$H^\perp = \{ \mathbf{x} \in \mathbb{R}^3 \mid \mathbf{v}_1 \cdot \mathbf{x} = 0, \mathbf{v}_2 \cdot \mathbf{x} = 0, \dots, \mathbf{v}_k \cdot \mathbf{x} = 0 \}$$
+
+    That is,
+
+    \begin{enumerate}
+        \item $H^\perp$ is the solution set, i.e. the \textbf{null space}, of the homogeneous system of equations $A \mathbf{x} = \mathbf{0}$, and
+        \item the vectors $\mathbf{v}_1, \dots, \mathbf{v}_k$ make up the row space of the matrix $A$.
+    \end{enumerate}
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\switchcolumn
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    Let $H$ be a linear subspace of $\mathbb{R}^n$. Then \\
+
+    \begin{enumerate}
+        \item $(H^\perp)^\perp = H$.
+        \item $dim(H) + dim(H^\perp) = n$ \\
+
+        \item $H^\perp$ is a linear subspace of $\mathbb{R}^n$. (This follows from the fact that it is the solution set of a homogeneous system of equations.)
+        \item The only vector that is both in $H$ and $H^\perp$ is the zero vector: $H \cap H^\perp = \{ \mathbf{0} \}$
+    \end{enumerate}
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\end{paracol}
+
+\textbf{Example}:
+
+Let $W = \text{Span} \Bigg\{ \begin{pmatrix}
+    -2, \\ 6 \\ -1 \\ -1
+\end{pmatrix}, \begin{pmatrix}
+    2 \\ -6 \\ -2 \\ 10
+\end{pmatrix}, \begin{pmatrix}
+    -4 \\ 12 \\ 4 \\ -20
+\end{pmatrix} \Bigg\}$. The basis $\Bigg\{ \begin{pmatrix}
+    3 \\ 1 \\ 0 \\ 0
+\end{pmatrix}, \begin{pmatrix}
+    -2 \\ 0 \\ 3 \\ 1
+\end{pmatrix} \Bigg\}$ for $W^\perp$ can be found by solving the homogeneous system
+
+$$
+\begin{bmatrix}
+    -2 & 6 & -1 & -1 & | & 0 \\
+    2 & -6 & -2 & 10 & | & 0 \\
+    -4 & 12 & 4 & -20 & | & 0 \\
+\end{bmatrix} \sim \begin{bmatrix}
+    1 & -3 & 0 & 2 & | & 0 \\
+    0 & 0 & 1 & -3 & | & 0 \\
+    0 & 0 & 0 & 0 & | & 0 \\
+\end{bmatrix}
+$$
+
+\subsection{Orthogonal Projections}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.975\textwidth}
+    If $\mathbf{u}, \mathbf{v}$ are vectors in $\mathbb{R}^n$ and $\mathbf{u} \neq \mathbf{0}$, then the projection of $\mathbf{v}$ onto $\mathbf{u}$ is a scalar multiple of $\mathbf{u}$ - the vector
+
+    $$\text{Proj}_\mathbf{u}(\mathbf{v}) = \Big( \frac{\mathbf{u} \cdot \mathbf{v}}{\mathbf{u} \cdot \mathbf{u}} \Big) \mathbf{u}$$
+
+    If $\mathbf{u}$ is a unit vector, then $\text{Proj}_\mathbf{u}(\mathbf{v}) = ( \mathbf{u} \cdot \mathbf{v} ) \mathbf{u}$.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+\newpage
+
+\begin{paracol}{2}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    Let $W$ be a subspace of $\mathbb{R}^n$ and let $\{ \mathbf{u}_1, \dots, \mathbf{u}_k \}$ be an \textit{orthogonal} basis for $W$. For any vector $\mathbf{v} \in \mathbb{R}^n$, the orthogonal projection of $\mathbf{v}$ onto $W$ is
+
+    \begin{align*}
+        \text{Proj}_W(\mathbf{v}) & = \text{Proj}_W(\mathbf{u}_1) + \dots + \text{Proj}_W(\mathbf{u}_k) \\
+        & = \Big( \frac{\mathbf{u}_1 \cdot \mathbf{v}}{\mathbf{u}_1 \cdot \mathbf{u}_1} \Big) \mathbf{u}_1 + \dots + \Big( \frac{\mathbf{u}_k \cdot \mathbf{v}}{\mathbf{u}_k \cdot \mathbf{u}_k} \Big) \mathbf{u}_k
+    \end{align*}
+
+    The component of $\mathbf{v}$ orthogonal to $W$ is the vector $\text{perp}_W(\mathbf{v}) = \mathbf{v} - \text{Proj}_W(\mathbf{v})$
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    Let $W$ be a subspace of $\mathbb{R}^n$ and let $\mathbf{v}$ be a vector in $\mathbb{R}^n$. Then there are unique vectors $\mathbf{w}$ in $W$ and $\mathbf{w}^\perp$ in $W^\perp$ such that
+    $$\mathbf{v} = \mathbf{w} + \mathbf{w}^\perp$$
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Orthogonal Decomposition Theorem};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    If $W$ is a subspace of $\mathbf{R}^n$, then $(W^\perp)^\perp = W$.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    If $W$ is a subspace of $\mathbb{R}^n$, then $\dim(W) + \dim(W^\perp) = n$.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    If $A$ is an $m \times n$ matrix, then
+
+    \begin{itemize}
+        \item $\text{rank}(A) + \text{nullity}(A) = n$
+        \item $\text{rank}(A) + \text{nullity}(A^T) = m$
+    \end{itemize}
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Rank Theorem};
+\end{tikzpicture}
+
+Often, you want to decompose a vector into two vectors, with one component in a certain subspace and the other component orthogonal to it.
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    Let $H$ be a subspace of $\mathbb{R}^n$ with an \textit{orthogonal} basis $B = \{\mathbf{b}_1, \dots, \mathbf{b}_k\}$. Then the orthogonal projection of a vector $\mathbf{x}$ onto $H$ is given by:
+    \begin{align*}
+        \text{proj}_H (\mathbf{x}) & = \text{proj}_{\mathbf{b}_1} (\mathbf{x}) + \dots + \text{proj}_{\mathbf{b}_k} (\mathbf{x}) \\
+            & = (\frac{\mathbf{x} \cdot \mathbf{b}_1}{\mathbf{b}_1 \cdot \mathbf{b}_1})\mathbf{b}_1 + \dots + (\frac{\mathbf{x} \cdot \mathbf{b}_k}{\mathbf{b}_k \cdot \mathbf{b}_k})\mathbf{b}_k
+    \end{align*}
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\switchcolumn
+
+NB: $B$ must be an \textit{orthogonal} basis! If if it is not, use the Gram-Schmidt process.
+
+Orthogonal decompositions can be defined for any vector and any linear subspace:
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    Let $\mathbf{x}$ be a vector in $\mathbb{R}^n$, and $H$ a subspace of $\mathbb{R}^n$. Suppose that we can find $y$ in $H$ and $z$ orthogonal to $H$ such that $\mathbf{x} = y + z$. This sum is called an \textbf{orthogonal decomposition} of $\mathbf{x}$ with respect to $H$.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    Let $H$ be a linear subspace of $\mathbb{R}^n$, and $\mathbf{x}$ a vector in $\mathbb{R}^n$. Then $\mathbf{x}$ has a \textbf{unique} orthogonal decomposition with respect to $H: \mathbf{x} = \mathbf{y} + \mathbf{z}$, where
+    \begin{itemize}
+        \item $\mathbf{y} = \text{proj}_H \mathbf{x}$
+        \item $\mathbf{z} = \mathbf{x} - \text{proj}_H \mathbf{x}$
+    \end{itemize}
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\textbf{Example}: Given is the unit vector $\mathbf{y}$ and the space $W = \text{Span}\{ \mathbf{u}_1, \mathbf{u}_2 \}$. The vector $\hat{\mathbf{y}}$ is the orthogonal projection of $\mathbf{y}$ onto $W$. What is $\mathbf{u}_1 \cdot (\mathbf{y} - \hat{\mathbf{y}})$?
+
+By definition, the difference between a vector and its orthogonal projection is orthogonal to the space it is being projected onto. This means it is orthogonal to each vector in this space.
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    The \textbf{distance} between vectors $\mathbf{v}$ and $\mathbf{w}$ is $||\mathbf{v} - \mathbf{w}||$.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+Orthogonal projections give us a way to find the shortest distance between a vector and a subspace.
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    Let $H$ be a linear subspace of $\mathbb{R}^n$, $\mathbf{x}$ a vector in $\mathbb{R}^n$, and $\mathbf{p} = \text{proj}_H \mathbf{x}$. Then $\mathbf{p}$ is the closest point in $H$ to $\mathbf{x}$. \\
+
+    That is, for any other point $\mathbf{q}$ in $H$, $||\mathbf{x} - \mathbf{p}|| \leq ||\mathbf{x} - \mathbf{q}||$.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\textbf{Example}: Suppose $A \mathbf{x} = \mathbf{b}$ is inconsistent, i.e. $\mathbf{b} \notin \text{Col} A$, e.g. due to measurement errors. However, replacing $\mathbf{b}$ with $\hat{\mathbf{b}} = \text{proj}_{\text{Col} A} \mathbf{b}$ gives a consistent system $A \mathbf{x} = \hat{\mathbf{b}}$.
+
+\end{paracol}
+
+\subsection{The Gram-Schmidt Orthogonalisation Process}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.95\textwidth}
+    Let $\{\mathbf{a}_1, \dots, \mathbf{a}_m\}$ be a basis for a subspace $H$ of $\mathbb{R}^n$. Then the Gram-Schmidt process produces an orthogonal basis $\{\mathbf{b}_1, \dots, \mathbf{b}_m\}$ for $H$:
+
+    \begin{itemize}
+        \item $\mathbf{b}_1 = \mathbf{a}_1$
+        \item $\mathbf{b}_2 = \mathbf{a}_2 - \text{proj}_{\mathbf{b}_1} \mathbf{a}_2$
+        \item $\mathbf{b}_3 = \mathbf{a}_3 - \text{proj}_{\mathbf{b}_1} \mathbf{a}_3 - \text{proj}_{\mathbf{b}_2} \mathbf{a}_3$
+        \item $\dots$
+        \item $\mathbf{b}_m = \mathbf{a}_m - \text{proj}_{\mathbf{b}_1} \mathbf{a}_m - \dots - \text{proj}_{\mathbf{b}_{m-1}} \mathbf{a}_m$
+    \end{itemize}
+
+    Define $B$ as the set of \textbf{non-zero} vectors $\mathbf{b}_i$: $B = \{\mathbf{b}_1, \dots, \mathbf{b}_m\} \backslash \mathbf{0}$. Then $B$ is an \textbf{orthogonal basis} for $H$.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\subsection{The QR Factorisation}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.975\textwidth}
+    Let $A$ be an $m \times n$ matrix with \textit{linearly independent} columns. Then $A$ can be factored as $A = QR$, where $Q$ is an $m \times n$ matrix with orthonormal columns and $R$ is an invertible upper triangular matrix.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+We can also arrange for the diagonal entries of $R$ to be positive. If any $r_{ii} < 0$, replace $\mathbf{q}_i$ by $- \mathbf{q}_i$ and $r_{ii}$ by $- r_{ii}$.

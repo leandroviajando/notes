@@ -1,0 +1,296 @@
+\section{Eigenvalues and Eigenvectors}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.975\textwidth}
+    Let $A$ be a $n \times n$ matrix. A scalar $\lambda$ is called an eigenvalue of $A$ if there is a corresponding non-zero \textbf{eigenvector} $\mathbf{x}$ of $A$ such that
+
+    \vspace{-20pt}
+
+    $$A \mathbf{x} = \lambda \mathbf{x}, \mathbf{x} \neq \mathbf{0}$$
+
+    \vspace{-5pt}
+
+    The collection of all eigenvectors corresponding to an eigenvalue $\lambda$ of $A$, together with the zero vector, is called the \textbf{eigenspace} of $\lambda$, denoted by $E_\lambda$.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+The eigenspace is a subspace because it's closed under vector addition and scalar multiplication:
+
+\begin{enumerate}
+    \item If $\mathbf{u}$ and $\mathbf{v}$ are eigenvectors for $\lambda$, i.e. $A\mathbf{u} = \lambda \mathbf{u},  A \mathbf{v} = \lambda \mathbf{v}$, then $(\mathbf{u} + \mathbf{v})$ is also an eigenvector for $\lambda$, as $A(\mathbf{u} + \mathbf{v}) = \lambda(\mathbf{u} + \mathbf{v})$.
+    \item If $\mathbf{u}$ is an eigenvector for $\lambda$ and $c$ is a scalar, then $c \mathbf{u}$ is also an eigenvector for $\lambda$, since $A(c \mathbf{u}) = c(A \mathbf{u}) = c(\lambda \mathbf{u}) = \lambda(c \mathbf{u})$.
+\end{enumerate}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.975\textwidth}
+    Assume $\mathbf{v}$ is an eigenvector of $A$ with eigenvalue $\lambda$. Then
+
+    \begin{enumerate}
+        \item $c \mathbf{v}$ is also an eigenvector of $A$ with eigenvalue $\lambda$, for any $c \in \mathbb{R}, c \neq 0$.
+        \item $\mathbf{v}$ is an eigenvector of $cA$, with eigenvalue $c\lambda$, for every $c \in \mathbb{R}$.
+        \item $\mathbf{v}$ is an eigenvector of $A^k$, with eigenvalue $\lambda^k$, for every integer $k \geq 0$. \\
+
+        \item $0$ is an eigenvalue of $A$ if and only if $A$ is singular (not invertible).
+        \item If $A$ is invertible, $\mathbf{v}$ is an eigenvector of $A^{-1}$, with eigenvalue $\lambda^{-1} = 1 / \lambda$.
+        \item If $A$ is invertible, then $\mathbf{v}$ is an eigenvector of $A^k$, with eigenvalue $\lambda^k$, for any integer $k$.
+    \end{enumerate}
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\textbf{Proofs}:
+
+\begin{enumerate}
+    \item $A\mathbf{v} = \lambda\mathbf{v} \Rightarrow c(A\mathbf{v}) = c(\lambda\mathbf{v}) \Rightarrow A(c\mathbf{v}) = \lambda(c\mathbf{v})$
+
+    \item $A\mathbf{v} = \lambda\mathbf{v} \Rightarrow c(A\mathbf{v}) = c(\lambda\mathbf{v}) \Rightarrow (cA)\mathbf{v} = (c\lambda)\mathbf{v}$
+
+    \item $A\mathbf{v} = \lambda\mathbf{v} \Rightarrow A^2\mathbf{v} = A(A\mathbf{v}) = A(\lambda\mathbf{v}) = \lambda(A\mathbf{v}) = \lambda(\lambda\mathbf{v}) = \lambda^2\mathbf{v} \Rightarrow A^3\mathbf{v} = A(A^2\mathbf{v}) = A(\lambda^2\mathbf{v}) = \lambda^2(A\mathbf{v}) = \lambda^2(\lambda\mathbf{v}) = \lambda^3\mathbf{v}$
+
+    \item $0$ eigenvalue $A \iff$ a vector $\mathbf{v} \neq 0$ exists such that $A\mathbf{v} = 0\mathbf{v} = \mathbf{0} \iff A$ is not invertible.
+
+    \item Suppose $A$ is an eigenvalue of $A$ assuming that $A$ is invertible. From the previous point, we know that $\lambda \neq 0$. Now let $A\mathbf{v} = \lambda \mathbf{v}, \mathbf{v} \neq \mathbf{0}$ and consider the following sequence of implications: $A\mathbf{v} = \lambda\mathbf{v} \Rightarrow A^{-1}(A\mathbf{v}) = A^{-1}(\lambda\mathbf{v}) \Rightarrow (A^{-1}A)\mathbf{v} = \lambda(A^{-1}\mathbf{v}) \Rightarrow \mathbf{v} = \lambda(A^{-1}\mathbf{v}) \Rightarrow \lambda^{-1}\mathbf{v} = A^{-1}\mathbf{v}$
+\end{enumerate}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.975\textwidth}
+    Let $A$ be an $n \times n$-matrix and $\lambda$ an eigenvalue of $A$.
+
+    The \textbf{eigenspace} of $A$ corresponding to $\lambda$ is the solution set of the homogeneous system $(A - \lambda I) \mathbf{x} = \mathbf{0}$:
+
+    $$E_\lambda = \text{Nul}(A - \lambda I)$$
+
+    \begin{itemize}
+        \item $E_\lambda = \text{Nul}(A - \lambda I)$ hence $E_\lambda$ is a linear subspace of $\mathbb{R}^n$.
+        \item $E_\lambda$ contains all eigenvectors of $A$ belonging to the eigenvalue $\lambda$ \textbf{and the zero vector} (which is not an eigenvector).
+        \item $\text{dim}(E_\lambda) \geq 1$ (otherwise $\lambda$ wouldn't be an eigenvalue).
+    \end{itemize}
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+\begin{paracol}{2}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    Let $V$ be a linear subspace of $\mathbb{R}^n$. Let $\text{Proj}_V$ be the \textbf{orthogonal projection} onto $V$ and let $P_V$ be its standard matrix; that is, $\text{Proj}_V(\mathbf{x}) = P_V \mathbf{x}$ for all $\mathbf{x} \in \mathbb{R}^n$. \\
+
+    Then $P_V$ can only have eigenvalues $0$ and $1$.
+
+    \begin{enumerate}
+        \item If $V \neq \{\mathbf{0}\}$, then $V$ is the eigenspace for $1$.
+        \item If $V \neq \mathbb{R}^n$, then $V^\perp$ is the eigenspace for $0$.
+    \end{enumerate}
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\switchcolumn
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    Let $V$ be a linear subspace of $\mathbb{R}^n$. Let $\text{Refl}_V$ be the \textbf{orthogonal reflection} through $V$ and let $R_V$ be its standard matrix; that is, $\text{Refl}_V(\mathbf{x}) = R_V \mathbf{x}$ for all $\mathbf{x} \in \mathbb{R}^n$. \\
+
+    Then $R_V$ can only have eigenvalues $1$ and $-1$.
+
+    \begin{enumerate}
+        \item If $V \neq \{\mathbf{0}\}$, then $V$ is the eigenspace for $1$.
+        \item If $V \neq \mathbb{R}^n$, then $V^\perp$ is the eigenspace for $-1$.
+    \end{enumerate}
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\end{paracol}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.975\textwidth}
+    Let $A$ be an $n \times n$ matrix and let $\lambda_1, \lambda_2, \dots, \lambda_m$ be distinct eigenvalues of $A$ with corresponding eigenvectors $\mathbf{v}_1, \mathbf{v}_2, \dots, \mathbf{v}_m$.
+
+    Then $\mathbf{v}_1, \mathbf{v}_2, \dots, \mathbf{v}_m$ are linearly independent.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.975\textwidth}
+    Suppose the $n \times n$ matrix $A$ has eigenvectors $\mathbf{v}_1, \mathbf{v}_2, \dots, \mathbf{v}_m$ with corresponding eigenvalues $\lambda_1, \lambda_2, \dots, \lambda_m$.
+    
+    If $\mathbf{x}$ is a vector in $\mathbb{R}^n$ that can be expressed as a linear combination of these eigenvectors, $\mathbf{x} = c_1 \mathbf{v}_1 + c_2 \mathbf{v}_2 + \dots + c_m \mathbf{v}_m$ - in the ideal case a basis of $\mathbb{R}^n$ consisting of eigenvectors of $A$, then, for any integer $k$
+
+    \vspace{-5pt}
+
+    $$A^k \mathbf{x} = c_1 \lambda_1 \mathbf{v}_1 + c_2 \lambda_2 \mathbf{v}_2 + \dots + c_m \lambda_m \mathbf{v}_m$$
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\newpage
+
+\subsection{The Characteristic Equation}
+
+\begin{paracol}{2}
+
+Finding the eigenvalues of an $n \times n$ matrix amounts to finding the roots of a polynomial of degree $n$ - the \textbf{characteristic polynomial} of the matrix.
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    The equation $\text{det}(A - \lambda I) = 0$ is called the \textbf{characteristic equation} of $A$.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    If $A$ is $n \times n$, its \textbf{characteristic polynomial}, $\text{det}(A - \lambda I)$, is of degree $n$.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    By the Fundamental Theorem of Algebra, it follows that every $n \times n$-matrix has $n$ eigenvalues $\lambda$ (real or complex, and multiplicities taken into account).
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Corollary};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    The following statements are equivalent:
+
+    \begin{enumerate}
+        \item $\lambda$ is an eigenvalue of a matrix $A$.
+        \item There exists a vector $\mathbf{x} \neq \mathbf{0}$ such that $(A - \lambda I) \mathbf{x} = \mathbf{0}$.
+        \item The matrix $A - \lambda I$ is \textit{not} invertible.
+        \item $\text{det}(A - \lambda I) = 0$
+    \end{enumerate}
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\switchcolumn
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    The eigenvalues of a \textbf{triangular matrix} are the entries on its main diagonal: $(a_{11} - \lambda) (a_{22} - \lambda) \dots (a_{nn} - \lambda) = 0$
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\textbf{Proof}: Upper-triangular matrices
+
+\vspace{-20pt}
+
+\begin{align*}
+    \text{det}(A - \lambda I) & = \text{det} \begin{bmatrix}
+    a_{11} - \lambda & a_{12} & \dots & a_{1n} \\
+    0 & a_{22} - \lambda & & \vdots \\
+    \vdots & 0 & \ddots & \\
+     & \vdots & \ddots & \\
+     0 & 0 & \dots & a_{nn} - \lambda
+\end{bmatrix} \\
+    & = (a_{11} - \lambda) \text{det} \begin{bmatrix}
+    a_{12} & \dots & a_{1n} \\
+    a_{22} - \lambda & & \vdots \\
+    0 & \ddots & \\
+    \vdots & \ddots & \\
+    0 & \dots & a_{nn} - \lambda
+\end{bmatrix} \\
+    & = (a_{11} - \lambda) (a_{22} - \lambda) \dots (a_{nn} - \lambda) = 0
+\end{align*}
+
+NB: Every matrix is row equivalent to an upper triangular matrix, i.e. echelon form. But \textbf{row operations change eigenvalues}!
+
+\end{paracol}
+
+\textbf{Process for finding the Eigenspaces (Eigenvalues and Eigenvectors) of a Matrix}:
+
+\begin{enumerate}
+    \item Compute the characteristic polynomial $\det(A - \lambda I)$ of $A$.
+    \item Find the eigenvalues of $A$ by solving the characteristic equation $\det(A - \lambda I) = 0$ for $\lambda$.
+    \item For each eigenvalue $\lambda$, find the null space of the matrix $A - \lambda I$. This is the eigenspace $E_\lambda$, the non-zero vectors of which are the eigenvectors of $A$ corresponding to $\lambda$.
+    \item Find a basis for each eigenspace.
+\end{enumerate}
+
+\subsection{Multiplicities}
+
+There are two natural ways to define multiplicity: algebraically and geometrically.
+Interestingly, although these two multiplicities are related, they are not always equal.
+
+\begin{paracol}{2}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    The \textbf{algebraic} multiplicity of $\lambda_i$ is its multiplicity as a root, i.e. the number of times the factor $(\lambda - \lambda_i)$ appears in, the characteristic polynomial
+
+    $$\text{a.m.}(\lambda_i) = \text{det}(A - \lambda I), 1 \leq \text{a.m.}(\lambda_i) \leq n$$
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+\switchcolumn
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    The \textbf{geometric} multiplicity of $\lambda_i$ is the dimension of its corresponding eigenspace
+    
+    $$\text{g.m.}(\lambda_i) = E_{\lambda_i} = \textbf{Nul}(A - \lambda_i I), 1 \leq \text{g.m.}(\lambda_i) \leq n$$
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+\end{paracol}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.975\textwidth}
+    Let $A$ be an $n \times n$-matrix. For each of the eigenvalues $\lambda_i$ of $A$:
+
+    $$1 \leq \text{g.m.}(\lambda_i) \leq \text{a.m.}(\lambda_i) \leq n$$
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\subsection{Complex Eigenvalues}
+
+\begin{paracol}{2}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    $\mathbb{C}^n$ is the set of column vectors $\mathbf{z} = \begin{bmatrix}
+        z_1 \\ z_2 \\ \vdots \\ z_n
+    \end{bmatrix}$ with $z_1, z_2, \dots, z_n \in \mathbb{C}$. \\
+
+    Addition and scalar multiplication are defined in the same way as in $\mathbb{R}^n$.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+\switchcolumn
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    Let $A$ be a real $n \times n$-matrix. Then the following holds: \\
+
+    If $A \mathbf{v} = \lambda\mathbf{v}$ for some $\lambda \in \mathbb{C}, \mathbf{v} \in \mathbb{C}^n$, then $A \mathbf{\bar{v}} = \bar{\lambda}\mathbf{\bar{v}}$. \\
+
+    That is, for every complex eigenvalue-eigenvector pair $\lambda, \mathbf{v}$ of a real matrix $A$ the conjugate pair $\lambda, \mathbf{v}$ is also an eigenvalue-eigenvector pair of $A$. \\
+    
+    This is generally not true for matrices that are not real!
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\end{paracol}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.975\textwidth}
+    If $p(\mathbf{x}) = a_0 + a_1 \mathbf{x} + \dots + a_{n-1} \mathbf{x}_{n-1} + \mathbf{x}_n$ and $A$ is a square matrix, then there is a square matrix
+
+    $$p(A) = a_0 I + a_1 A + \dots + a_{n-1} A^{n-1} + A^n$$
+
+    If $c_A(\lambda)$ is the characteristic polynomial of the matrix $A$, then $c_A(A) = 0$. (Every matrix satisfies its polynomial equation!)
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Cayley-Hamilton Theorem};
+\end{tikzpicture}
+

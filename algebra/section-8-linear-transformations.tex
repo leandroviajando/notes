@@ -1,0 +1,383 @@
+\section{Linear Transformations}
+
+Linear transformations are functions or mappings that preserve the structure of the vector space. In other words, they preserve the operations of addition and scalar multiplication.
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.95\textwidth}
+    A transformation $T: \mathbb{R}^n \rightarrow \mathbb{R}^m$ is a \textbf{linear transformation} if it satisfies the following properties: \\
+
+    \begin{itemize}
+        \item $T(\mathbf{u} + \mathbf{v}) = T(\mathbf{u}) + T(\mathbf{v})$ for all $\mathbf{u}, \mathbf{v} \in \mathbb{R}^n$,
+        \item $T(c \mathbf{u}) = c T(\mathbf{u})$ for all $\mathbf{u} \in \mathbb{R}^n$ and $c \in \mathbb{R}$.
+    \end{itemize}
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+For every vector $\mathbf{v}$ in the domain of $T$, the vector $T(\mathbf{v})$ in the codomain is called the \textbf{image} of $\mathbf{v}$ under (the action of) $T$. The set of all possible images $T(\mathbf{v})$ (as $\mathbf{v}$ varies throughout the domain of $T$) is called the \textbf{range} of $T$.
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.95\textwidth}
+    Any matrix transformation is a linear transformation.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\textbf{Proof}: Both properties hold as a direct consequence of the rules of calculation of matrix-vector multiplication:
+\begin{itemize}
+    \item $A(\mathbf{u} + \mathbf{v}) = A \mathbf{u} + A \mathbf{v}$
+    \item $A(c \mathbf{u}) = c A \mathbf{u}$
+\end{itemize}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.95\textwidth}
+    Let $T: \mathbb{R}^n \rightarrow \mathbb{R}^m$ be a linear transformation. Then $T$ has the following properties: \\
+
+    \begin{enumerate}
+        \item $T$ maps the zero vector to the zero vector: $T(\mathbf{0}) = \mathbf{0}$.
+        \item $T$ maps each line in $\mathbb{R}^n$ to a line or a point in $\mathbb{R}^m$.
+        \item $T$ maps \textit{parallel} lines in $\mathbb{R}^n$ either to (possibly coinciding) \textit{parallel} lines in $\mathbb{R}^m$ or to (possibly coinciding) points in $\mathbb{R}^m$.
+        \item Let $W$ be a linear subspace of $\mathbb{R}^n$ with dimension $k$. Then $T(W)$ is a linear subspace of $\mathbb{R}^m$ with dimension $\leq k$.
+    \end{enumerate}
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\textbf{Examples} of linear transformations in geometry:
+
+\begin{itemize}
+    \item Rotations around the origin
+    \item Orthogonal projections on a line through the origin (or any other linear subspace)
+    \item Reflections through a line through the origin (or any other linear subspace) \\
+\end{itemize}
+
+\textbf{Example}: $T: \mathbb{R}^2 \rightarrow \mathbb{R}^3$:
+
+$$T(\begin{bmatrix} x_1 \\ x_2 \end{bmatrix}) = A \begin{bmatrix} x_1 \\ x_2 \end{bmatrix} = \begin{bmatrix} a_{11} & a_{12} \\ a_{21} & a_{22} \\ a_{31} & a_{32} \end{bmatrix} \begin{bmatrix} x_1 \\ x_2 \end{bmatrix} = \begin{bmatrix} a_{11} x_1 + a_{12} x_2 \\ a_{21} x_1 + a_{22} x_2 \\ a_{31} x_1 + a_{32} x_2 \end{bmatrix}$$
+
+\textbf{Example}: Rotation of a vector $\mathbf{r} = \begin{bmatrix}
+    x \\ y
+\end{bmatrix} = \begin{bmatrix}
+    r \cos(\phi) \\ r \sin(\phi)
+\end{bmatrix}$ by an angle $\theta$ can be derived using trigonometry and addition formula for cosine and sine:
+
+$$
+\begin{bmatrix}
+    x' \\ y'
+\end{bmatrix} = \begin{bmatrix}
+    r \cos(\phi + \theta) \\ r \sin(\phi + \theta)
+\end{bmatrix} = \begin{bmatrix}
+    r ( \cos \theta \cos \phi - \sin \theta \sin \phi ) \\ r ( \sin \theta \cos \phi + \cos \theta \sin \phi )
+\end{bmatrix} = \begin{bmatrix}
+    x \cos \theta - y \sin \theta \\ x \sin \theta + y \cos \theta
+\end{bmatrix} = \begin{bmatrix}
+    \cos \theta & - \sin \theta \\
+    \sin \theta & \cos \theta
+\end{bmatrix} \begin{bmatrix}
+    x \\ y
+\end{bmatrix}
+$$
+
+Thus, the rotation matrix by an angle $\theta$ is the orthogonal matrix
+
+$$
+R_\theta = \begin{bmatrix}
+    \cos \theta & - \sin \theta \\
+    \sin \theta & \cos \theta
+\end{bmatrix}
+$$
+
+\newpage
+
+\subsection{The Standard Matrix of a Linear Transformation}
+
+\begin{paracol}{2}
+
+Any matrix transformation is a linear transformation. The converse is also true:
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    For any linear transformation $T: \mathbb{R}^n \rightarrow \mathbb{R}^m$, there exists a matrix $A$ such that $T(\mathbf{x}) = A \mathbf{x}$ for all $\mathbf{x} \in \mathbb{R}^n$.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+This has far-reaching consequences: any linear transformation, including rotations, projections and reflections, can be evaluated using matrix-vector multiplication.
+It makes it easy to implement linear transformations on a computer, which is very convenient in, for example, Computer Graphics.
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    Let $T: \mathbb{R}^n \rightarrow \mathbb{R}^m$ be a linear transformation, and ${e_1, \dots, e_n}$ be the standard basis of $\mathbb{R}^n$.
+    Then the standard matrix of $T$ is the matrix with columns where the transformation $T$ is applied to each standard basis vector:
+    $$A = \begin{bmatrix} T(e_1) & \dots & T(e_n) \end{bmatrix}$$
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\textbf{Example}: Rotations:
+
+Let $T_{\alpha}: \mathbb{R}^2 \rightarrow \mathbb{R}^2$ be a rotation around the origin by angle $\alpha$.
+Then $T_{\alpha}(\mathbf{x}) = \begin{bmatrix} \cos \alpha & -\sin \alpha \\ \sin \alpha & \cos \alpha \end{bmatrix} \mathbf{x}$, for all $\mathbf{x} \in \mathbb{R}^2$.
+
+\switchcolumn
+
+$\text{Ker}(T_A) \equiv \mathcal{N}(A), \quad \text{Image}(T_A) \equiv \mathcal{C}(A)$.
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    Let $L$ be the line in $\mathbb{R}^2$ spanned by vector $\mathbf{v} = \begin{bmatrix} a \\ b \end{bmatrix}$.
+    Let $\text{Proj}_L: \mathbb{R}^2 \rightarrow \mathbb{R}^2$ be the orthogonal projection on $L$.
+    Then $\text{Proj}_L(\mathbf{x}) = \frac{1}{a^ + b^2} \begin{bmatrix} a^2 & ab \\ ab & b^2 \end{bmatrix} \mathbf{x}$, for all $\mathbf{x} \in \mathbb{R}^2$.
+    If $L$ makes an angle $\alpha$ with the $x_1$-axis, then this can be rewritten to:
+    $$\text{Proj}_L(\mathbf{x}) = \begin{bmatrix} \cos^2 \alpha & \cos \alpha \sin \alpha \\ \cos \alpha \sin \alpha & \sin^2 \alpha \end{bmatrix} \mathbf{x}$$
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    Let $T: \mathbb{R}^n \rightarrow \mathbb{R}^m$ be a linear transformation. Let $B = \{b_1, \dots, b_n\}$ be a basis for $\mathbb{R}^n$.
+    Then there is a unique $n \times n$ matrix $M_B$ such that for each vector $\mathbf{x}$ in $\mathbb{R}^n$ the following holds:
+
+    $$[T(\mathbf{x})]_B = M_B [\mathbf{x}]_B$$
+
+    The $k$-th column of $M_B$ is the coordinate vector of $T(b_k)$ with respect to the basis $B$.
+
+    Furthermore, if $A$ is the standard matrix to $T$, then $A = P M_B P^{-1}$, i.e. $A$ and $M_B$ are similar.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\end{paracol}
+
+\subsection{Composition and Inversion of Linear Transformations, and their Relation with Matrix Algebra}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.95\textwidth}
+    \textbf{Composition of Linear Transformations}:
+
+    Let $T_1: \mathbb{R}^n \rightarrow \mathbb{R}^m$ and $T_2: \mathbb{R}^m \rightarrow \mathbb{R}^k$ be linear transformations, with standard matrices $A_1$ and $A_2$.
+    Then the composition $T_3 = T_2 \circ T_1: \mathbb{R}^n \rightarrow \mathbb{R}^k$ defined by $T_3(\mathbf{x}) = T_2(T_1(\mathbf{x}))$ is a linear transformation, with standard matrix $A_3 = A_2 A_1$.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.95\textwidth}
+    Linear transformations are \textbf{associative}: $T_x(\mathbf{x}) = T_2(T_1(\mathbf{x})) = A_2(A_1 \mathbf{x}) = (A_2 A_1) \mathbf{x}$ \\
+    
+    That is, you can either first apply $A_1$ and then $A_2$, or directly apply $A_3 = A_2 A_1$.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\textbf{Example}: Rotations
+
+$R_{\alpha}(\mathbf{x}) = \begin{bmatrix} \cos \alpha & -\sin \alpha \\ \sin \alpha & \cos \alpha \end{bmatrix} \mathbf{x}$ is the standard matrix of the rotation $T_{\alpha}: \mathbb{R}^2 \rightarrow \mathbb{R}^2$ around the origin by angle $\alpha$.
+
+$R_{2\alpha} = \begin{bmatrix} \cos 2\alpha & -\sin 2\alpha \\ \sin 2\alpha & \cos 2\alpha \end{bmatrix} \mathbf{x}$ is the standard matrix of the rotation $T_{2\alpha}: \mathbb{R}^2 \rightarrow \mathbb{R}^2$ around the origin by angle $2\alpha$.
+
+$R_{\alpha}(\mathbf{x}) R_{\alpha}(\mathbf{x}) = \begin{bmatrix} \cos \alpha & -\sin \alpha \\ \sin \alpha & \cos \alpha \end{bmatrix} \begin{bmatrix} \cos \alpha & -\sin \alpha \\ \sin \alpha & \cos \alpha \end{bmatrix} \mathbf{x} = \begin{bmatrix} \cos^2 \alpha - \sin^2 \alpha & -2 \sin \alpha \cos \alpha \\ 2 \sin \alpha \cos \alpha & \cos^2 \alpha - \sin^2 \alpha \end{bmatrix} \mathbf{x} = \begin{bmatrix} \cos 2\alpha & -\sin 2\alpha \\ \sin 2\alpha & \cos 2\alpha \end{bmatrix} \mathbf{x} = R_{2\alpha} \mathbf{x}$.
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.95\textwidth}
+    \textbf{Inversion of Linear Transformations}:
+
+    Let $T: \mathbb{R}^n \rightarrow \mathbb{R}^n$ be a linear transformation.
+    A function $S: \mathbb{R}^n \rightarrow \mathbb{R}^n$ is an \textbf{inverse} of $T$ if
+    \begin{enumerate}
+        \item $S(T(\mathbf{x})) = \mathbf{x}$ for all $\mathbf{x} \in \mathbb{R}^n$,
+        \item $T(S(\mathbf{x})) = \mathbf{x}$ for all $\mathbf{x} \in \mathbb{R}^n$.
+    \end{enumerate}
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+\textbf{Example}: Rotations
+
+$R_{\alpha}(\mathbf{x}) = \begin{bmatrix} \cos \alpha & -\sin \alpha \\ \sin \alpha & \cos \alpha \end{bmatrix} \mathbf{x}$ is the standard matrix of the rotation $T_{\alpha}: \mathbb{R}^2 \rightarrow \mathbb{R}^2$ around the origin by angle $\alpha$.
+
+$R_{-\alpha}(\mathbf{x}) = \begin{bmatrix} \cos -\alpha & -\sin -\alpha \\ \sin -\alpha & \cos -\alpha \end{bmatrix} \mathbf{x} = \begin{bmatrix} \cos \alpha & \sin \alpha \\ -\sin \alpha & \cos \alpha \end{bmatrix} \mathbf{x}$ is the standard matrix of the rotation $T_{-\alpha}: \mathbb{R}^2 \rightarrow \mathbb{R}^2$ around the origin by angle $-\alpha$.
+
+$R_{\alpha}^{-1}(\mathbf{x}) = \frac{1}{\cos^2 \alpha + \sin^2 \alpha} \begin{bmatrix} \cos \alpha & \sin \alpha \\ -\sin \alpha & \cos \alpha \end{bmatrix} \mathbf{x} = \begin{bmatrix} \cos \alpha & \sin \alpha \\ -\sin \alpha & \cos \alpha \end{bmatrix} \mathbf{x} = R_{-\alpha}(\mathbf{x})$.
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.95\textwidth}
+    Let $T: \mathbb{R}^n \rightarrow \mathbb{R}^n$ be a linear transformation, with inverse $S: \mathbb{R}^n \rightarrow \mathbb{R}^n$.
+    Then the following statements hold:
+    \begin{enumerate}
+        \item $S$ is unique,
+        \item $S$ is a linear transformation,
+        \item If $T$ has a standard matrix $A$, then $S$ has a standard matrix $A^{-1}$.
+    \end{enumerate}
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\subsection{Injectivity and Surjectivity of Linear Transformations}
+
+\begin{paracol}{2}
+
+The properties of a linear transformation are related to the properties of its standard matrix.
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    Let $X$ and $Y$ be sets and $f: X \rightarrow Y$ be a function.
+
+    $f$ is \textbf{injective} if for each $y \in Y$ there is \textit{at most} one $x \in X$ such that $f(x) = y$.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+\textbf{Example}: $e^x$ is injective, $x^2$ is not.
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    Let $X$ and $Y$ be sets and $f: X \rightarrow Y$ be a function.
+    
+    $f$ is \textbf{surjective} if for each $y \in Y$ there is \textit{at least} one $x \in X$ such that $f(x) = y$.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+\textbf{Example}: $x^3 - 3x$ is surjective, $e^x$ and $x^2$ are not because the range of $e^x$ is $(0, \infty)$ and the range of $x^2$ is $[0, \infty)$.
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    Let $T: \mathbb{R}^n \rightarrow \mathbb{R}^m$ be a linear transformation, with standard matrix $A$.
+    \begin{itemize}
+        \item $T$ is \textbf{injective} if and only if for each $\mathbf{y} \in \mathbb{R}^m$ the equation $A \mathbf{x} = \mathbf{y}$ has \textit{at most} one solution, i.e. a pivot position in every column.
+        \item $T$ is \textbf{surjective} if and only if for each $\mathbf{y} \in \mathbb{R}^m$ the equation $A \mathbf{x} = \mathbf{y}$ has \textit{at least} one solution, i.e. a pivot position in every row.
+    \end{itemize}
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\switchcolumn
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    \textbf{Characterisation of Injectivity}:
+
+    Let $T: \mathbb{R}^n \rightarrow \mathbb{R}^m$ be a linear transformation, with standard matrix $A$.
+
+    Then the following statements are equivalent:
+    \begin{enumerate}
+        \item $T$ is injective.
+        \item For any vector $\mathbf{y} \in \mathbb{R}^m$, the equation $A \mathbf{x} = \mathbf{y}$ has \textit{at most} one solution.
+        \item The columns of $A$ are linearly independent.
+        \item $A$ has a left inverse, i.e. there exists a matrix $B$ such that $BA = I_n$.
+        \item $A$ has a pivot position in every column.
+        \item The rank of $A$ is $n$.
+    \end{enumerate}
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    \textbf{Characterisation of Surjectivity}:
+
+    Let $T: \mathbb{R}^n \rightarrow \mathbb{R}^m$ be a linear transformation, with standard matrix $A$.
+    
+    Then the following statements are equivalent:
+    
+    \begin{enumerate}
+        \item $T$ is surjective.
+        \item For any vector $\mathbf{y} \in \mathbb{R}^m$, the equation $A \mathbf{x} = \mathbf{y}$ has \textit{at least} one solution.
+        \item The columns of $A$ span $\mathbb{R}^m$.
+        \item $A$ has a right inverse, i.e. there exists a matrix $B$ such that $AB = I_m$.
+        \item $A$ has a pivot position in every row.
+        \item The rank of $A$ is $m$.
+    \end{enumerate}
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\end{paracol}
+
+\subsection{Orthogonal Transformations}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.95\textwidth}
+    A linear transformation $T: \mathbb{R}^n \rightarrow \mathbb{R}^n$ is \textbf{orthogonal} if for all vectors $\mathbf{u}, \mathbf{v} \in \mathbb{R}^n$ the following holds:
+
+    $$T(\mathbf{u}) \cdot T(\mathbf{v}) = \mathbf{u} \cdot \mathbf{v}$$
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.95\textwidth}
+    An orthogonal linear transformation preserves the norms of all vectors and angles between them.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.95\textwidth}
+    Let $T: \mathbb{R}^n \rightarrow \mathbb{R}^n$ be a linear transformation with standard matrix $A$.
+
+    Then the following statements are equivalent:
+    
+    \begin{enumerate}
+        \item $T$ preserves the dot product, i.e. $T(\mathbf{u}) \cdot T(\mathbf{v}) = \mathbf{u} \cdot \mathbf{v}$ for all $\mathbf{u}, \mathbf{v} \in \mathbb{R}^n$.
+        \item $T$ preservces the norms of vectors, i.e. $\|T(\mathbf{u})\| = \|\mathbf{u}\|$ for all $\mathbf{u} \in \mathbb{R}^n$, and angles between them, i.e. $\cos \theta = \frac{\mathbf{u} \cdot \mathbf{v}}{\|\mathbf{u}\| \|\mathbf{v}\|} = \frac{T(\mathbf{u}) \cdot T(\mathbf{v})}{\|T(\mathbf{u})\| \|T(\mathbf{v})\|}$.
+        \item The columns of $A$ are mutually orthogonal and have norm $1$.
+        \item The standard matrix $A$ is an orthogonal matrix, i.e. $A^T A = I_n$; that is, $A^T = A^{-1}$.
+    \end{enumerate}
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\textbf{Example}:
+The orthogonal projection $\text{Proj}_V(\mathbf{x})$ on a linear subspace $V$ of $\mathbb{R}^n$ is not an orthogonal linear transformation: \\
+
+If $V \neq \mathbb{R}^n$, we can take a vector $\mathbf{x} \neq \mathbf{0}$ that is orthogonal to $V$.
+Then $\text{Proj}_V(\mathbf{x}) = \mathbf{0}$, so $\text{Proj}_V$ does not preserve the norm of $\mathbf{x}$. \\
+
+However, matrices with orthonormal columns play a role in the context of projections:
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.95\textwidth}
+    Let $V \neq {\mathbf{0}}$ be a linear subspace of $\mathbb{R}^n$ and ${\mathbf{u}_1, \dots, \mathbf{u}_k}$ be an \textit{orthonormal basis} for $V$.
+    Let $U$ be the $n \times k$ matrix with columns $\mathbf{u}_1, \dots, \mathbf{u}_k$. \\
+    
+    Then $U U^T$ is the standard matrix of the orthogonal projection on $V$:
+
+    $$\text{Proj}_V(\mathbf{x}) = U U^T \mathbf{x}$$
+    \begin{enumerate}
+        \item It is important that the basis is orthonormal. If it is not, apply the Gram-Schmidt process.
+        \item It does not matter which orthonormal basis you use. The product $U U^T$ is the same for all orthonormal bases of $V$; the standard matrix is unique.
+        \item Note that $(U U^T)^T = (U^T)^T U^T = U U^T$. \textit{The standard matrix of an orthogonal projection is symmetric.}
+    \end{enumerate}
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+Reflections and rotations are orthogonal linear transformations.
+
+Projections, and translations by a non-zero vector are not.
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.95\textwidth}
+    Let $V$ be a linear subspace of $\mathbb{R}^n$. Let $\mathbf{x}$ be a vector in $\mathbb{R}^n$ with orthogonal decomposition $\mathbf{x} = \mathbf{x}_{||} + \mathbf{x}_{\perp}$, where $\mathbf{x}_{||} \in V$ and $\mathbf{x}_{\perp} \in V^{\perp}$.
+    Then the \textbf{reflection} of $\mathbf{x}$ through $V$ is
+
+    $$\text{Refl}_V(\mathbf{x}) = \mathbf{x}_{||} - \mathbf{x}_{\perp}$$
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.95\textwidth}
+    Let $V$ be a linear subspace of $\mathbb{R}^n$. Then the following statements hold: \\
+
+    \begin{enumerate}
+        \item The reflection $\text{Refl}_V$ is an orthogonal linear transformation. \\
+        \item $\text{Refl}_V(\mathbf{x}) = 2 \text{Proj}_V(\mathbf{x}) - \mathbf{x}$ for all vectors $\mathbf{x} \in \mathbb{R}^n$. \\
+        \item Suppose $V \notin {\mathbf{0}}$. Let ${\mathbf{u}_1, \dots, \mathbf{u}_k}$ be an orthonormal basis for $V$ and let $U$ be the $n \times k$ matrix with columns $\mathbf{u}_1, \dots, \mathbf{u}_k$. Then the standard matrix of the reflection $\text{Refl}_V$ is $2 U U^T - I_n$. If $V = {\mathbf{0}}$, the standard matrix of the reflection $\text{Refl}_V$ is $-I_n$.
+    \end{enumerate}
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}

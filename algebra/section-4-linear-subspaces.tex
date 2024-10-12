@@ -1,0 +1,395 @@
+\section{Linear Subspaces}
+
+\begin{paracol}{2}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    A \textbf{linear subspace} of $\mathbb{R}^n$ is a set $H$ such that:
+    \begin{enumerate}
+        \item $\mathbf{0} \in H \iff $ solution set $H$ of $A\mathbf{x}=\mathbf{0}$ is never empty.
+        \item If $\mathbf{u} \in H$ and $\mathbf{v} \in H$, then $\mathbf{u} + \mathbf{v} \in H$.
+        \item If $\mathbf{v} \in H$, and $c \in \mathbb{R}$, then $c\mathbf{v} \in H$.
+    \end{enumerate}
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    Any linear combination of vectors in $H$ is also in $H$.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Corollary};
+\end{tikzpicture}
+
+\switchcolumn
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    That is, linear subspaces are closed under
+    \begin{itemize}
+        \item vector addition
+        \item scalar multiplication
+        \item linear combinations.
+    \end{itemize}
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+That is, you cannot get out of a linear subspace by means of any of these operations. \textbf{Example}: If vectors $\mathbf{v}_1, \dots, \mathbf{v}_k$ are in a subspace and $c_1, \dots, c_k$ are scalars, then the linear combination $c_1 \mathbf{v}_1 + \dots + c_k \mathbf{v}_k$ is in the subspace.
+
+\end{paracol}
+
+\textbf{Examples}: What is a subspace in $\mathbb{R}^n$?
+\begin{itemize}
+    \item The origin $\mathbf{0}$ by itself is the smallest possible linear subspace.
+    \item Every line through the origin is a subspace.
+    \item Every plane through the origin is a subspace - it is $\mathbb{R}^2$. (And every higher-dimensional hyperplane in $\mathbb{R}^n$.)
+    \item Let $\mathbf{v}_1, \dots, \mathbf{v}_k \in \mathbb{R}^n$. Then $\text{Span}(\mathbf{v}_1, \dots, \mathbf{v}_k)$ is a subspace of $\mathbb{R}^n$.
+    \item Any line, plane or hyperplane that does not pass through the origin is not a linear subspace.
+    \item The first quadrant in $\mathbb{R}^2$, is not a linear subspace because $-\mathbf{v}$ would not be in the space, i.e. property 3 does not hold.
+\end{itemize}
+
+Two subspaces of a vector space may never be disjoint because by definition they must contain the zero vector.
+
+\begin{paracol}{2}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    Let $A$ be an $m \times n$-matrix. The \textbf{null space} of $A$ is the set of all $\mathbf{x} \in \mathbb{R}^n$ such that $A\mathbf{x} = \mathbf{0}$:
+    $$\text{Nul}(A) = \{\mathbf{x} \in \mathbb{R}^n | A\mathbf{x} = \mathbf{0} \}$$
+    That is, $\text{Nul}(A)$ is the solution set of the homogeneous equation $A\mathbf{x}=\mathbf{0}$.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+\textbf{Example}: Is $\mathbf{p} \in \text{Nul}(A)$? If $A\mathbf{p}=\mathbf{0}$, yes; else, no.
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    Let $A$ be an $m \times n$-matrix and $\mathbf{b}$ a vector in $\mathbb{R}^m$. The linear equation $A\mathbf{x}=\mathbf{b}$ is either inconsistent, or the solution set equals $\mathbf{p} + \text{Nul}(A)$, where $\mathbf{p}$ is one particular solution of the equation.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    Let $A$ be an $m \times n$-matrix. Then $\text{Nul}(A)$ is a linear subspace of $\mathbb{R}^n$:
+    \begin{enumerate}
+        \item $A \mathbf{0} = \mathbf{0} \quad \Rightarrow \quad \mathbf{0} \in \text{Nul}(A)$
+        \item $A(\mathbf{x} + \mathbf{y}) = \mathbf{0} \quad \Rightarrow \quad A\mathbf{x} + A\mathbf{y} = \mathbf{0} \quad \Rightarrow \quad \mathbf{x}, \mathbf{y} \in \text{Nul}(A) \quad \Rightarrow \quad A\mathbf{x}=\mathbf{0}, A\mathbf{y}=\mathbf{0} \quad \Rightarrow \quad \mathbf{0} + \mathbf{0} = \mathbf{0}$
+        \item $A(c\mathbf{x}) = c(A\mathbf{x}) = c(\mathbf{0}) = \mathbf{0}$
+    \end{enumerate}
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\switchcolumn
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    Let $A$ be an $m \times n$ matrix. The \textbf{row space} of $A$ is the subspace $\text{Row}(A)$ of $\mathbb{R}^n$ spanned by the rows of $A$.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    Let $B$ be any matrix that is row-equivalent to a matrix $A$. Then $\text{Row}(B) = \text{Row}(A)$.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    Let $A$ be an $m \times n$ matrix. The \textbf{column space} of $A$ is the subspace $\text{Col}(A)$ of $\mathbb{R}^m$ spanned by the columns of $A$.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+That is, the column space is the set of all possible outcomes of the multiplication $A\mathbf{x}$ - the set of all linear combinations of the columns of $A$:
+
+$$\text{Col}(A) = \{ x_1 \mathbf{a}_1 + \dots + x_n \mathbf{a}_n \text{ for } x_1, \dots, x_n \in \mathbb{R} \}$$
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    It follows that $\mathbf{b} \in \text{Col}(A)$ iff $A \mathbf{x} = \mathbf{b}$ is consistent:
+    $$\text{Col}(A) = \{ \mathbf{b} \in \mathbb{R}^m \text{ for which } A\mathbf{x}=\mathbf{b} \text{ is consistent} \}$$
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Corollary};
+\end{tikzpicture}
+
+\end{paracol}
+
+\textbf{Example}: Null Space
+
+\vspace{-20pt}
+
+$$
+\left[\begin{array}{cccc|c}
+    1 & 2 & -5 & -1 & 0 \\
+    2 & -1 & 0 & 3 & 0
+\end{array}\right]
+\qquad \rightarrow \qquad
+\mathbf{x} = s \begin{bmatrix}
+    1 \\ 2 \\ 1 \\ 0
+\end{bmatrix} + t \begin{bmatrix}
+    -1 \\ 1 \\ 0 \\ 1
+\end{bmatrix}, \quad s, t \in \mathbb{R}
+\qquad \rightarrow \qquad
+\text{Nul}(A) = \Bigg\{ \begin{bmatrix}
+    1 \\ 2 \\ 1 \\ 0
+\end{bmatrix}, \begin{bmatrix}
+    -1 \\ 1 \\ 0 \\ 1
+\end{bmatrix} \Bigg\}
+$$
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.95\textwidth}
+    The span of any set of vectors is a linear subspace.
+    That is, given vectors $\mathbf{v}_1, \dots, \mathbf{v}_k \in \mathbb{R}^m$, $\text{Span}(\{ \mathbf{v}_1, \dots, \mathbf{v}_k \})$ is a linear subspace of $\mathbb{R}^m$: \\
+
+    \begin{enumerate}
+        \item $0 \mathbf{v}_1 + \dots + 0 \mathbf{v}_k = \mathbf{0} \Rightarrow \mathbf{0} \in \text{Span}(\{ \mathbf{v}_1, \dots, \mathbf{v}_k \})$
+        \item $\mathbf{x} = c_1 \mathbf{v}_1 + \dots + c_k \mathbf{v}_k \in \text{Span}(\{ \mathbf{v}_1, \dots, \mathbf{v}_k \}), \mathbf{y} = d_1 \mathbf{v}_1 + \dots + d_k \mathbf{v}_k \in \text{Span}(\{ \mathbf{v}_1, \dots, \mathbf{v}_k \}) \Rightarrow \mathbf{x} + \mathbf{y} = (c_1 + d_1) \mathbf{v}_1 + \dots + (c_k + d_k) \mathbf{v}_k \Rightarrow \mathbf{x} + \mathbf{y} \in \text{Span}(\{ \mathbf{v}_1, \dots, \mathbf{v}_k \})$
+        \item $c \mathbf{x} = (c \cdot c_1)\mathbf{v}_1 + \dots + (c \cdot)\mathbf{v}_k \Rightarrow c \mathbf{x} \in \text{Span}(\{ \mathbf{v}_1, \dots, \mathbf{v}_k \})$
+    \end{enumerate}
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\newpage
+
+\subsection{Basis}
+
+\begin{paracol}{2}
+
+In a linear subspace, you can add vectors and multiply them by scalars, just as in $\mathbb{R}^n$. This connection between a subspace and $\mathbb{R}^n$ can be made precise using the definition of a basis.
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    A set $\{\mathbf{v}_1, \dots, \mathbf{v}_k\} \in \mathbb{R}^n$ is a \textbf{basis} for subspace $H \in \mathbb{R}^n$ if:
+    \begin{itemize}
+        \item the set $\{\mathbf{v}_1, \dots, \mathbf{v}_k\}$ is linearly independent, and
+        \item $H = \text{Span}(\{\mathbf{v}_1, \dots, \mathbf{v}_k\})$.
+    \end{itemize}
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+\begin{itemize}
+    \item A set of vectors is linearly independent if $A\mathbf{x} = \mathbf{0}$ has only the trivial solution $\mathbf{x} = \mathbf{0}$, i.e. pivot in every col.
+    \item A set of vectors spans a subspace if $A \mathbf{x} = \mathbf{b}$ is consistent for all $\mathbf{b} \in \mathbb{R}^n$, i.e. if every row has a pivot position.
+\end{itemize}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    Let $B=\{\mathbf{b}_1, \dots, \mathbf{b}_k\}$ be a basis for subspace $H \in \mathbb{R}^n$. Then, for each vector $\mathbf{x} \in H$ there exists a \textbf{unique} set of scalars $c_1, \dots, c_k$ such that $\mathbf{x} = c_1 \mathbf{b}_1 + \dots + c_k \mathbf{b}_k$. \\
+
+    That is, the $B$-coordinates of $\mathbf{x}$ are:
+    $$[\mathbf{x}]_B = \begin{bmatrix}c_1 \\ \vdots \\ c_k\end{bmatrix}$$
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    The $k^\text{th}$ standard unit vector $\mathbf{e}_k \in \mathbb{R}^n$ is the vector with component $k = 1$ and the other components equal to zero.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+\switchcolumn
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    The set $\epsilon = \{ \mathbf{e}_1, \dots, \mathbf{e}_n \}$ of the standard unit vectors in $\mathbb{R}^n$ is a basis for $\mathbb{R}^n$ - the \textbf{standard basis}:
+    $$\mathbf{x} = \begin{bmatrix}x_1 \\ \vdots \\ x_n\end{bmatrix} = x_1 \mathbf{e}_1 + \dots + x_n \mathbf{e}_n$$
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+The pivot columns in $RREF(A)$ are the standard unit vectors. They are linearly independent.
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    Let $A$ be an $m \times n$-matrix. The pivot columns of $A$ form a basis for $\text{Col}(A)$.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    Row operations preserve dependence relations between the columns of a matrix.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    Let $A$ be an $m \times n$-matrix. Suppose that the homogeneous equation $A\mathbf{x}=\mathbf{0}$ has $k$ free variables.
+    Let $\mathbf{b}_i$ be the solution for which the $i^\text{th}$ free variable is $1$.
+    Then $\{ \mathbf{b}_1, \dots, \mathbf{b}_k \}$ is a \textbf{basis for the null space} $\text{Nul}(A)$. \\
+
+    That is, the solution vectors in parametric form span the null space. 
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\vspace{-5pt}
+
+This theorem can be used to find a basis for any linear subspace given by homogeneous linear equations.
+
+\end{paracol}
+
+\vspace{-7.5pt}
+
+\subsection{Dimension}
+
+\begin{paracol}{2}
+
+Dimension is the maximum number of independent directions.
+
+That is, the dimension is equal to the number of vectors in a basis. But bases are not unique. However, all bases of a given subspace contain the same number of vectors:
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    All bases for a linear subspace of $\mathbb{R}^n$ contain the same number of vectors.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+Therefore, the idea of dimension works:
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    Let $H$ be a linear subspace of $\mathbb{R}^n$.
+    Let $B=\{\mathbf{b}_1, \dots, \mathbf{b}_k\}$ be a basis for $H$.
+    The \textbf{dimension} of $H$ is the number of vectors in $B$:
+    $$\text{dim}(H) = k$$
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+\switchcolumn
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    Let $H$ be a linear subspace of $\mathbb{R}^n$ with $\text{dim}(H) = k$. Then the following statements hold:
+    \begin{enumerate}
+        \item There are at most $k$ distinct independent vectors in $H$.
+        \item At least $k$ vectors are needed to span $H$.
+        \item Vectors in $H$ can be described with $k$ coordinates.
+    \end{enumerate}
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    Let $H$ be a linear subspace of $\mathbb{R}^n$ with $\text{dim}(H)=k$.
+    Let $S=\{\mathbf{v}_1, \dots, \mathbf{v}_k \}$ be a set of vectors in $H$. \\
+    
+    If set $S$ is linearly independent, then $S$ spans $H$. \\
+    
+    Hence it is a basis.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {The Basis Theorem};
+\end{tikzpicture}
+
+NB: The vectors \textit{must} be in $H$ for the theorem to hold!
+
+\end{paracol}
+
+\vspace{-7.5pt}
+
+\subsection{Rank}
+
+\begin{paracol}{2}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    The \textbf{column space} of a matrix $A$ is made up of the columns that have a pivot position.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+\vspace{-2.5pt}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    The \textbf{rank} of a matrix $A$ is the dimension of the column space of $A$:
+    $$\text{rank}(A) = \text{dim}(\text{Col}(A) = \text{dim}(\text{Row}(A))$$
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\switchcolumn
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    The \textbf{null space} of a matrix $A$ is made up of the columns that do not have a pivot position, i.e. the number of free variables of equation $A\mathbf{x}=\mathbf{0}$.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+\vspace{-5pt}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    The \textbf{nullity} of a matrix $A$ is the dimension of the null space of $A$:
+    $$\text{nullity}(A) = \text{dim}(\text{Nul}(A))$$
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\switchcolumn
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    For a consistent system of linear equations with coefficient matrix $A$:
+    
+    \begin{itemize}
+        \item $\text{rank}(A)$ is the \textit{effective} number of equations.
+        \item $\text{nullity}(A)$ is the number of free variables.
+    \end{itemize}
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+The number of free variables (/columns) equals the total number of variables (/columns) minus the effective number of equations (/rows):
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    Let $A$ be a matrix with $n$ columns. Then
+    $$\text{rank}(A) + \text{nullity}(A) = n$$
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Rank Theorem};
+\end{tikzpicture}
+
+\switchcolumn
+
+The effective set of equations for any linear system can be found by putting the system in echelon form.
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    Let $A$ be an $m \times n$-matrix with $k$ pivot positions. Then
+    \begin{align*}
+        \text{rank}(A) = \text{dim}(\text{Col}(A)) & = k & (k \text{ pivot positions}) \\
+        \text{nullity}(A) = \text{dim}(\text{Nul}(A)) & = n-k & (n-k \text{ free variables})
+    \end{align*}
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\vspace{10pt}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    For any matrix $A$,
+
+    $$\text{rank}(A^T) = \text{rank}(A)$$
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\end{paracol}

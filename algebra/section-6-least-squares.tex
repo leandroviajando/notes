@@ -1,0 +1,143 @@
+\section{The Least-Squares Method}
+
+An inconsistent linear system is a system without solutions.
+However, such a system does have a so-called least-squares solution.
+
+\begin{paracol}{2}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    The \textbf{least-squares solution} $\hat{\mathbf{x}}$ of an inconsistent linear system $A\mathbf{x} = \mathbf{b}$ is the vector $\hat{\mathbf{x}}$ that minimizes the least-squares error.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+\switchcolumn
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    The least-squares error is the distance of the vector $\mathbf{b}$ to the column space of $A$:
+    $$E = \|A\hat{\mathbf{x}} - \mathbf{b}\| = || \hat{\mathbf{b}} - \mathbf{b} ||$$
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+\end{paracol}
+
+Given an inconsistent linear system $A\mathbf{x} = \mathbf{b}$,
+\begin{enumerate}
+    \item (If the basis of the column space is not orthogonal, you have to apply the Gram-Schmidt process first.)
+    \item Find $\hat{\mathbf{b}} \in Col(A)$ such that $\|\mathbf{b} - \hat{\mathbf{b}}\|$ is minimized: $\hat{\mathbf{b}} = \text{proj}_{Col(A)}\mathbf{b}$.
+    \item Solve the consistent linear system $A\mathbf{x} = \hat{b}$. The solution is the least-squares solution $\hat{\mathbf{x}}$.
+    \item The least-squares error gives an indication of how far the original equation is from being consistent. \\
+\end{enumerate}
+
+Note: If $A \mathbf{x} = \mathbf{b}$ is consistent, then $\hat{\mathbf{b}} = \mathbf{b}$, the least squares error is $0$, and the least squares solution is the ordinary solution.
+
+\subsection{The Normal Equation}
+
+Calculation of the projection can be a lot of work.
+Luckily, it can be circumvented by using the normal equation.
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.95\textwidth}
+    $$A^T A \mathbf{x} = A^T \mathbf{b}$$
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+\textbf{Proof}: Because $\hat{\mathbf{b}}$ is the projection of $\mathbf{b}$ onto $Col(A)$, it is orthogonal to the error vector $\mathbf{b} - \hat{\mathbf{b}}$.
+Therefore, $(\mathbf{b} - \hat{\mathbf{b}})$ is orthogonal to $Col(A)$.
+Given $A \hat{\mathbf{x}} = \hat{\mathbf{b}}$, $A \hat{\mathbf{x}} - \mathbf{b}$ is orthogonal to $Col(A)$. That is,
+
+$$
+\begin{cases}
+    \mathbf{v}_1 \cdot (A \hat{\mathbf{x}} - \mathbf{b}) = 0 \\
+    \mathbf{v}_2 \cdot (A \hat{\mathbf{x}} - \mathbf{b}) = 0 \\
+\end{cases}
+\Rightarrow
+\begin{cases}
+    \mathbf{v}_1^T (A \hat{\mathbf{x}} - \mathbf{b}) = 0 \\
+    \mathbf{v}_2^T (A \hat{\mathbf{x}} - \mathbf{b}) = 0 \\
+\end{cases}
+\Rightarrow
+\begin{bmatrix}
+    \mathbf{v}_1^T \\
+    \mathbf{v}_2^T \\
+\end{bmatrix}
+(A \hat{\mathbf{x}} - \mathbf{b}) = 0
+\Rightarrow
+A^T (A \hat{\mathbf{x}} - \mathbf{b}) = 0
+\Rightarrow
+A^T A \hat{\mathbf{x}} = A^T \mathbf{b}
+$$
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.95\textwidth}
+    For a system $A \mathbf{x} = \mathbf{b}$, the least-squares solutions of the normal equation $A^T A \hat{\mathbf{x}} = A^T \mathbf{b}$ are precisely the least-squares solutions of the original system. That is, $A \hat{\mathbf{x}}$ is the vector in $\text{Col}(A)$ closest to $\mathbf{b}$, and $\hat{\mathbf{x}}$ solves both: \\
+    \begin{itemize}
+        \item $A \hat{\mathbf{x}} = \hat{\mathbf{b}} = \text{proj}_{Col(A)}\mathbf{b}$, and
+        \item the normal equation $A^T A \hat{\mathbf{x}} = A^T \mathbf{b}$.    \end{itemize}
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Theorem};
+\end{tikzpicture}
+
+\subsection{Regression}
+
+\begin{paracol}{2}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    $$X \beta = y$$
+    where $X$ is the \textbf{design matrix}, $\beta$ is the \textbf{parameter vector}, and $y$ is the \textbf{response or observation vector}.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    This gives the \textbf{Normal Equation}:
+    $$X^T X \beta = X^T y$$
+
+    and the \textbf{Least-Squares Solution}:
+    $$\hat{\beta} = (X^T X)^{-1} X^T y$$
+
+    that minimises the \textbf{Least-Squares Error}:
+    $$E = \|y - X \hat{\beta}\| = \sqrt{\sum_{i=1}^{n} (y_i - \hat{y}_i)^2}$$
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+\switchcolumn
+
+\begin{tikzpicture}
+\node [rounded-box] (box){\begin{minipage}{0.45\textwidth}
+    Suppose that two quantities $x$ and $y$ are related in the following way: $y = \beta_0 f_0(x) + \dots + \beta_k f_k(x)$,
+for some coefficients $\beta_0, \dots, \beta_k$ and (possibly non-linear) functions $f_0, \dots, f_k$.
+\end{minipage}};
+\node[rounded-box-title, left=10pt] at (box.north east) {Definition};
+\end{tikzpicture}
+
+$$
+\begin{bmatrix}
+    f_0(x_1) & \dots & f_k(x_1) \\
+    \vdots & \ddots & \vdots \\
+    f_0(x_N) & \dots & f_k(x_N) \\
+\end{bmatrix}
+\begin{bmatrix}
+    \beta_0 \\
+    \vdots \\
+    \beta_k \\
+\end{bmatrix}
+=
+\begin{bmatrix}
+    y_1 \\
+    \vdots \\
+    y_N \\
+\end{bmatrix}
+$$
+
+Especially for large $N$ this system will almost certainly be inconsistent.
+The least-squares line provides the best estimate of the coefficients by minimising the sum of the squares of the vertical distances between the regression line and the data points.
+
+\end{paracol}
