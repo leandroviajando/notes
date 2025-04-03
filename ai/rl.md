@@ -1654,6 +1654,20 @@ $$f(s, a, s') = \gamma \phi(s') - \phi(s)$$
 
 ### RLHF
 
+1. Collect demonstration data, and train a supervised policy.
+   - A prompt is sampled from our prompt dataset.
+   - A labeller demonstrates the desired output behaviour.
+   - This data is used to fine-tune GPT-3 with supervised learning.
+2. Collect comparison data, and train a reward model.
+   - A prompt and several model outputs are sampled.
+   - A labeller ranks the outputs from best to worst.
+   - This data is used to train our reward model.
+3. Optimise a policy against the reward model using reinforcement learning.
+   - A new prompt is sampled from the dataset.
+   - The policy generates an output.
+   - The reward model calculates a reward for the output.
+   - The reward is used to update the policy using PPO.
+
 ## References
 
 Abbeel, P. (2014). CS188 Intro to AI [Course materials]. UC Berkeley. Retrieved from <https://ai.berkeley.edu/home.html>
